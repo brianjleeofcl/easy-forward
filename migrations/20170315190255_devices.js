@@ -2,6 +2,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('devices', table => {
     table.increments()
+    table.integer('user_id').references('id').inTable('users').notNullable().index()
     table.string('nickname').notNullable()
     table.specificType('MAC_address', 'char(17)')
     table.string('socket_id')

@@ -1,7 +1,14 @@
 const express = require('express');
 const router = express.Router()
 
-// router.use('/scores', require('./routes/scores'))
-router.use('/user', require('./routes/users'))
+const boom = require('boom')
+
+router.use('/users', require('./routes/users'))
+router.use('/token', require('./routes/token'))
+router.use('/devices', require('./routes/devices'))
+
+router.use((req, res, next) => {
+  next(boom.notFound())
+});
 
 module.exports = router;

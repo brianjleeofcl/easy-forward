@@ -1,7 +1,12 @@
-// const knex = require('../../knex');
+const knex = require('../../knex');
 
 const express = require('express');
-const router = express.Router()
+const router = express.Router();
+
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+const boom = require('boom');
 
 router.get('/', (req, res) => {
   const user = {
@@ -22,6 +27,38 @@ router.get('/', (req, res) => {
     ]
   }
   res.send(user)
-})
+});
+
+router.post('/new', (req, res, next) => {
+  const { email, name, password } = req.body;
+
+  knex('users').where('email', email).then(([existingUser]) => {
+    if (existingUser) {
+      throw boom.badRequest('Email already exists');
+    }
+
+    return bcrypt.hash(password, 12);
+  }).then(pw_hash => {
+    const user = { email, pw_hash, name};
+
+    return knex('users').insert(user, '*');
+  }).then(([newUser]) => {
+    delete newUser.pw_hash;
+
+    const claim = { id: newUser.id };
+    const token = jwt.sign(claim, process.env.JWT_KEY, {
+      expiresIn: '7 days'
+    });
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      expiresIn: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+      secure: router.get('env') === 'production'
+    });
+
+    res.send(registeredUser);
+  })
+  .catch((err) => next(err));
+});
 
 module.exports = router;
