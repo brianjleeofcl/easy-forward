@@ -9,7 +9,22 @@ const jwt = require('jsonwebtoken');
 const boom = require('boom');
 
 router.get('/', (req, res, next) => {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, claim) => {
+    if (err) {
+      return [false];
+    }
 
+    return knex('users').where('id', claim.id);
+  }).then(([existingUser]) => {
+    if (!existingUser) => {
+      res.clearCookie('token')
+      return res.send(false)
+    }
+
+    const { name, email } = existingUser
+    
+    res.send({ name, email })
+  });
 });
 
 router.post('/', (req, res, next) => {
