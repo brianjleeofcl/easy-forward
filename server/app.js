@@ -2,6 +2,10 @@ const path = require('path');
 const express = require('express');
 const app = express()
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load()
+}
+
 app.use(
   require('morgan')('dev'),
   require('body-parser').json(),

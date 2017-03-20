@@ -11,20 +11,38 @@ const boom = require('boom');
 router.get('/', (req, res, next) => {
   jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, claim) => {
     if (err) {
-      return [false];
-    }
-
-    return knex('users').where('id', claim.id);
-  }).then(([existingUser]) => {
-    if (!existingUser) => {
       res.clearCookie('token')
-      return res.send(false)
+      return res.send({
+        valid: false,
+        user: {
+          id: -1,
+          name: '',
+          email: ''
+        }
+      })
     }
 
-    const { name, email } = existingUser
-    
-    res.send({ name, email })
-  });
+    knex('users').where('id', claim.id).then(([existingUser]) => {
+      if (!existingUser) {
+        res.clearCookie('token')
+        return res.send({
+          valid: false,
+          user: {
+            id: -1,
+            name: '',
+            email: ''
+          }
+        })
+      }
+
+      const { id, name, email } = existingUser
+      
+      res.send({
+        valid: true,
+        user: { id, name, email }
+      })
+    });
+  })
 });
 
 router.post('/', (req, res, next) => {
@@ -64,7 +82,7 @@ router.post('/', (req, res, next) => {
 
 router.delete('/', (req, res, next) => {
   res.clearCookie('token');
-  res.end();
+  res.send(false);
 })
 
 module.exports = router

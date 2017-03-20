@@ -1,19 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { User } from '../user'
+import { UsersService } from '../users.service'
+
+import { User } from '../user';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
+  providers: [UsersService]
 })
 export class NavComponent implements OnInit {
-  @Input()
-  user: User;
+  @Input() user: User;
+  @Input() logged: boolean;
+  @Output() logoutRequest = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(private uS: UsersService) { }
 
   ngOnInit() {
   }
 
+  logout() {
+    this.uS.logout().then(() => window.location.href = '/')
+  }
 }

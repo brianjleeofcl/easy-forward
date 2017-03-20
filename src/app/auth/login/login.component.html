@@ -1,3 +1,21 @@
-<p>
-  login works!
-</p>
+<div class="card">
+  <div class="card-header">
+    <h4>Log in</h4>
+    <a routerLink="/signup">New users? Sign up here!</a>
+  </div>
+  <form (ngSubmit)=handleSubmit() #loginForm="ngForm">
+    <div class="card-block">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name="email" value="" placeholder="user@example.com" [(ngModel)]="model.email">
+      </div>
+      <div class="form-group">
+        <label for="password">password</label>
+        <input type="password" class="form-control" name="email" value="" placeholder="********" [(ngModel)]="model.password">
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+  </form>
+</div>

@@ -1,3 +1,42 @@
-<p>
-  sign-up works!
-</p>
+<div class="card">
+  <div class="card-header">
+    <h4>Sign up</h4>
+  </div>
+  <form name="model" (ngSubmit)="handleSubmit()" #newUserForm="ngForm" novalidate>
+    <div class="card-block">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="model.user.name" id="name" name="name" #name="ngModel" required minlength="4">
+        <div *ngIf="name.errors && (name.dirty || name.touched)" class="has-danger">
+          <div [hidden]="!name.errors.required" class="form-control-feedback">Name is required</div>
+          <div [hidden]="!name.errors.minlength" class="form-control-feedback">Name must be at least 4 characters long.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" [(ngModel)]="model.user.email" id="email" name="email" #email="ngModel" required>
+        <div *ngIf="email.errors && (email.dirty || email.touched)" class="has-danger">
+          <div [hidden]="!email.errors.required" class="form-control-feedback">Email is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" [(ngModel)]="model.user.password" id="password" name="password" #password="ngModel" required minlength="8">
+        <div *ngIf="password.errors && (password.dirty || password.touched)" class="has-danger">
+          <div [hidden]="!password.errors.required" class="form-control-feedback">Password is required</div>
+          <div [hidden]="!password.errors.minlength" class="form-control-feedback">Password must be at least 8 characters long.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="verify">Verify Password</label>
+        <input type="password" class="form-control" [(ngModel)]="model.verify" id="verify" name="verify" #verify="ngModel" required minlength="8">
+        <div *ngIf="(password.value !== verify.value) && (verify.dirty || verify.touched)" class="has-danger">
+          <div class="form-control-feedback">Password verification must match password</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="submit" for="model" class="btn btn-primary" [disabled]="newUserForm.invalid || (password.value !== verify.value)">Submit</button>
+    </div>
+  </form>
+</div>

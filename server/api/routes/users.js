@@ -56,7 +56,7 @@ router.post('/new', (req, res, next) => {
       secure: router.get('env') === 'production'
     });
 
-    res.send(registeredUser);
+    res.send(newUser);
   })
   .catch((err) => next(err));
 });
