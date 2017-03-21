@@ -19,11 +19,11 @@
           Devices
         </a>
         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-            <li class="dropdown-item"><a routerLink="/devices">Device overview</a></li>
-            <li role="separator" class="dropdown-divider"></li>
-            <li *ngFor="let device of user.devices" class="dropdown-item"><a [routerLink]="['/device', device.uuid]">{{device.nickname}}</a></li>
-            <li role="separator" class="dropdown-divider"></li>
-            <li class="dropdown-item"><a routerLink="/add-device">Add device</a></li>
+            <li *ngIf="devices.length > 0" class="dropdown-item"><a routerLink="/devices">Device overview</a></li>
+            <li *ngIf="devices.length > 0" role="separator" class="dropdown-divider"></li>
+            <li *ngFor="let device of devices" class="dropdown-item"><a [routerLink]="['/device', device.id]">{{device.nickname}}</a></li>
+            <li *ngIf="devices.length > 0" role="separator" class="dropdown-divider"></li>
+            <li class="dropdown-item"><a routerLink="/new-device">Add device</a></li>
         </ul>
       </li>
       <li class="nav-item" *ngIf="logged">

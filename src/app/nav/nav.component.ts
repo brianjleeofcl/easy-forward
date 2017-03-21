@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UsersService } from '../users.service'
 
 import { User } from '../user';
+import { Device } from '../device'
 
 @Component({
   selector: 'app-nav',
@@ -13,6 +14,7 @@ import { User } from '../user';
 export class NavComponent implements OnInit {
   @Input() user: User;
   @Input() logged: boolean;
+  @Input() devices: Device[];
   @Output() logoutRequest = new EventEmitter<any>();
 
   constructor(private uS: UsersService) { }

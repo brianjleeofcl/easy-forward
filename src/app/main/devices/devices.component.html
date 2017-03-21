@@ -1,3 +1,26 @@
-<p>
-  devices works!
-</p>
+<div class="card">
+  <div class="card-header">
+    <h4>Device Overview</h4>
+  </div>
+  <div class="card-block">
+    <div *ngIf="devices.length>0">
+      <table>
+        <thead>
+          <tr>
+            <th>Nickname</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let device of devices">
+            <td>{{device.nickname}}</td>
+            <td>"current status"</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="devices.length===0">
+      <div class="alert">No devices</div>
+    </div>
+  </div>
+</div>
