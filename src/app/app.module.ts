@@ -20,6 +20,8 @@ import { NewDeviceComponent } from './main/devices/new-device/new-device.compone
 import { DeviceDetailsComponent } from './main/devices/device-details/device-details.component';
 
 import { UsersService } from './users.service';
+import { DevicesService } from './devices.service';
+import { SocketService } from './socket.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { UsersService } from './users.service';
     NgbModule.forRoot()
   ],
   providers: [
-    UsersService
+    UsersService,
+    SocketService,
+    DevicesService
   ],
   bootstrap: [AppComponent]
 })

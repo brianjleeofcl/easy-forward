@@ -8,8 +8,7 @@ import { Device } from '../device'
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css'],
-  providers: [UsersService]
+  styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
   @Input() user: User;

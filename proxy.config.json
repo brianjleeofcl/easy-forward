@@ -5,7 +5,8 @@
     "logLevel": "debug"
   },
   "/socket.io/*": {
-    "target": "http://localhost:3000",
-    "secure": false
+    "target": "ws://localhost:3000",
+    "ws": true,
+    "logLevel": "info"
   }
 }

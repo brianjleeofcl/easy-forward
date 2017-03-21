@@ -4,17 +4,26 @@
   </div>
   <div class="card-block">
     <div *ngIf="devices.length>0">
-      <table>
-        <thead>
+      <table class="table">
+        <thead class="thead-default">
           <tr>
             <th>Nickname</th>
             <th>Status</th>
+            <th>Last connected</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let device of devices">
             <td>{{device.nickname}}</td>
-            <td>"current status"</td>
+            <td>
+              <span *ngIf="device.socket_id">Connected</span>
+              <span *ngIf="!device.socket_id">Not connected</span>
+            </td>
+            <td>{{device.updated_at | date:'medium'}}</td>
+            <td>
+              <a class="btn btn-info" [routerLink]="['/device', device.id]">Details</a>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -13,6 +13,10 @@ export class DevicesService {
     return this.http.get('/api/devices/').toPromise().then(res => res.json()).catch(this.handleError)
   }
 
+  getDevice(id: number): Promise<Device> {
+    return this.http.get(`/api/devices/${id}`).toPromise().then(res => res.json()).catch(this.handleError)
+  }
+
   addNewDevice(newDevice): Promise<Device> {
     return this.http.post('/api/devices/new', newDevice).toPromise().then(res => res.json()).catch(this.handleError)
   }

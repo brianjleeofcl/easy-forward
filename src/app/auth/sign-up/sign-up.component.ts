@@ -14,8 +14,7 @@ class NewUserForm {
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css'],
-  providers: [UsersService]
+  styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
   model: NewUserForm = new NewUserForm(new NewUser(), '');

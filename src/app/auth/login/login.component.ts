@@ -13,8 +13,7 @@ class Credentials {
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [UsersService]
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   model: UserCredential = new UserCredential()

@@ -1,5 +1,18 @@
-<p>
-  device-details works!
-</p>
+<div class="card">
+  <div class="card-header">
+    <h4>Details: {{device.nickname}}</h4>
+  </div>
+  <div class="card-block">
+    <h5>Data</h5>
+    <ul>
+      <li>Status: 
+        <span *ngIf="!device.socket_id" class="has-danger">disconnected</span>
 
-<h4>{{socket.socket.id}}</h4>
+      </li>
+      <li>MAC Address: {{device.MAC_address | uppercase}}</li>
+      <li>Registed date: {{device.created_at | date:'medium'}}</li>
+    </ul>
+  </div>
+</div>
+
+
