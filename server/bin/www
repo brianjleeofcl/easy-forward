@@ -104,7 +104,6 @@ io.on('connection', client => {
   client.on('initialize-device-user', MAC => {
     knex('devices').where('MAC_address', MAC.toLowerCase()).then(([device]) => {
       if (device) {
-        console.log(device)
         knex('devices').where('MAC_address', MAC.toLowerCase()).update('socket_id', client.id, '*').then(([updatedDevice]) => {
           return knex('users').where('id', device.user_id)
         }).then(([user]) => client.to(user.email).emit('device-ready', device.id))
@@ -112,6 +111,10 @@ io.on('connection', client => {
         client.join('unassigned')
       }
     })
+  })
+
+  client.on('instruction-record', ([socket_id, interval, iteration]) => {
+    client.to(socket_id).emit('record', [interval, iteration])
   })
 
   client.on('instruction', instruction => {

@@ -16,6 +16,6 @@ export class SocketService {
   }
 
   sendInstructions(socket_id: string, interval: number, iteration: number) {
-    this.socket.to(socket_id).emit('instruction-record', interval, iteration)
+    this.socket.emit('instruction-record', [socket_id, interval, iteration])
   }
 }

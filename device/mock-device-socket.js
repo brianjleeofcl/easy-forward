@@ -8,3 +8,14 @@ socket.on('connect', () => {
 })
 
 socket.on('instructions', console.log)
+
+socket.on('record', ([interval, iteration]) => {
+  let index = 0
+  let intervalId = setInterval(() => {
+    console.log(Date.now())
+    index++
+    if (index === iteration) {
+      clearInterval(intervalId)
+    }
+  }, interval)
+})
