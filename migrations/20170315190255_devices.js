@@ -6,6 +6,7 @@ exports.up = function(knex) {
     table.string('nickname').notNullable()
     table.specificType('MAC_address', 'char(17)')
     table.string('socket_id').defaultTo(null)
+    table.boolean('busy').defaultTo(false)
     table.timestamps(true, true)
   })
 };

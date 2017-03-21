@@ -6,17 +6,19 @@
     <ul>
       <li>Status: 
         <span *ngIf="!device.socket_id" class="has-danger">disconnected</span>
-
+        <span *ngIf="device.socket_id && !device.busy">ready</span>
+        <span *ngIf="device.socket_id && device.busy">recording</span>
       </li>
       <li>MAC Address: {{device.MAC_address | uppercase}}</li>
       <li>Registed date: {{device.created_at | date:'medium'}}</li>
     </ul>
   </div>
-  <div class="card-img">
+  <div class="card-img" *ngIf="device.socket_id && !device.busy">
     
   </div>
-  <div class="card-block">
-    
+  <div class="card-block" *ngIf="device.socket_id && !device.busy">
+
+    <button type="button" class="btn btn-primary" (click)="start()">Start recording</button>
   </div>
 </div>
 

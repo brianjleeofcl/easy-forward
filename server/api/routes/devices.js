@@ -5,10 +5,12 @@ const router = express.Router();
 
 const jwt = require('jsonwebtoken');
 
+const boom = require('boom');
+
 function auth(req, res, next) {
   jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, claim) => {
     if (err) {
-      next(boom.unauthorized('Invalid access token'))
+      next(boom.unauthorized('Invalid access token'));
     }
 
     req.claim = claim

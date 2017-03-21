@@ -98,14 +98,14 @@ const io = require('socket.io')(server)
 
 io.on('connection', client => {
   client.on('initialize-browser-user', id => {
-    console.log(id)
     knex('users').where('id', id).then(([user]) => client.join(user.email))
   })
 
   client.on('initialize-device-user', MAC => {
-    knex('devices').where('MAC_address', MAC).then(([device]) => {
+    knex('devices').where('MAC_address', MAC.toLowerCase()).then(([device]) => {
       if (device) {
-        knex('devices').where('MAC_address', MAC).update('socket_id', client.id, '*').then(([updatedDevice]) => {
+        console.log(device)
+        knex('devices').where('MAC_address', MAC.toLowerCase()).update('socket_id', client.id, '*').then(([updatedDevice]) => {
           return knex('users').where('id', device.user_id)
         }).then(([user]) => client.to(user.email).emit('device-ready', device.id))
       } else {
@@ -115,14 +115,16 @@ io.on('connection', client => {
   })
 
   client.on('instruction', instruction => {
-    console.log(instruction)
+    console.log('instructions: ', instruction)
     client.send('Got it!')
   })
 
   client.on('disconnect', () => {
     knex('devices').where('socket_id', client.id).then(([device]) => {
       if (device) {
-        knex('devices').where('id', device.id).update('socket_i', null)
+        knex('devices').where('id', device.id).update('socket_id', null, '*').then(([disconnectedDevice]) => {
+          return knex('users').select('email').where('id', disconnectedDevice.user_id)
+        }).then(([{ email }]) => client.to(email).emit('device-update'))
       }
     })
   })

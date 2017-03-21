@@ -11,7 +11,7 @@ const board = new five.Board({
 
 board.on('ready', () => {
   const MAC = os.networkInterfaces().eth0[0].mac;
-  const socket = io.connect('http://');
+  const socket = io.connect('http://brianjleeofcl-capstone.herokuapp.com');
 
   socket.on('connect', () => {
     socket.emit('initialize-device-user', MAC)

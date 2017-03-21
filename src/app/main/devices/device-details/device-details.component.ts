@@ -30,4 +30,8 @@ export class DeviceDetailsComponent implements OnInit {
     this.route.params.switchMap((params: Params) => this.dS.getDevice(+params['id']))
       .subscribe(device => this.device = device);
   }
+
+  start(): void {
+    this.socket.sendInstructions(this.device.socket_id, 1000, 10)
+  }
 }

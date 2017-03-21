@@ -3,17 +3,19 @@ import * as io from 'socket.io-client';
 
 @Injectable()
 export class SocketService {
-  public socket: SocketIOClient.Socket
+  public socket: any
 
   constructor() {
-    this.socket = io.connect('/')
+    this.socket = io.connect('/').on('device-ready', (socket_id, MAC_address) => {
+      
+    }).on('device-update', () => console.log('device updated'))
   }
 
   onLoad(id: number) {
-    console.log(this.socket);
-    
-    console.log(this.socket.id);
-    
-    this.socket.emit('initialize-broswer-user', id)
+    this.socket.on('connect', () => this.socket.emit('initialize-browser-user', id))
+  }
+
+  sendInstructions(socket_id: string, interval: number, iteration: number) {
+    this.socket.to(socket_id).emit('instruction-record', interval, iteration)
   }
 }
