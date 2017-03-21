@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UsersService } from '../../users.service'
+import { UsersService } from '../../users.service';
+import { UserCredential } from '../../user-credential';
 
 class Credentials {
   constructor (
@@ -16,7 +17,7 @@ class Credentials {
   providers: [UsersService]
 })
 export class LoginComponent implements OnInit {
-  model: Credentials = new Credentials('', '')
+  model: UserCredential = new UserCredential()
 
   constructor(private uS: UsersService) { }
 

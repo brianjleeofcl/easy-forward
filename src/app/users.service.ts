@@ -5,15 +5,11 @@ import 'rxjs/add/operator/toPromise';
 
 import { User } from './user';
 import { NewUser } from './new-user';
+import { UserCredential } from './user-credential';
 
 class UserRes {
   user: User;
   valid: boolean;
-}
-
-class Credentials {
-  email: string;
-  password: string;
 }
 
 @Injectable()
@@ -29,7 +25,7 @@ export class UsersService {
     return this.http.post('/api/users/new/', user).toPromise().then(res => res.json()).catch(this.handleError)
   }
 
-  login(user: Credentials): Promise<any> {
+  login(user: UserCredential): Promise<any> {
     return this.http.post('/api/token/', user).toPromise().then(res => res.json()).catch(this.handleError)
   }
 

@@ -5,7 +5,7 @@ exports.up = function(knex) {
     table.integer('user_id').references('id').inTable('users').notNullable().index()
     table.string('nickname').notNullable()
     table.specificType('MAC_address', 'char(17)')
-    table.string('socket_id')
+    table.string('socket_id').defaultTo(null)
     table.timestamps(true, true)
   })
 };
