@@ -16,6 +16,8 @@ import { NavComponent } from './nav/nav.component';
 import { GalleryComponent } from './main/gallery/gallery.component';
 import { DashboardComponent } from './main/dashboard/dashboard.component';
 import { DevicesComponent } from './main/devices/devices.component';
+import { NewDeviceComponent } from './main/devices/new-device/new-device.component';
+import { DeviceDetailsComponent } from './main/devices/device-details/device-details.component';
 
 import { UsersService } from './users.service';
 
@@ -28,7 +30,9 @@ import { UsersService } from './users.service';
     NavComponent,
     GalleryComponent,
     DashboardComponent,
-    DevicesComponent
+    DevicesComponent,
+    NewDeviceComponent,
+    DeviceDetailsComponent
   ],
   imports: [
     BrowserModule,
