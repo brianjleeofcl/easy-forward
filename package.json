@@ -12,6 +12,9 @@
     "knex": "knex",
     "postinstall": "ng build --prod"
   },
+  "engines": {
+    "node": "7.6.0"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "^2.4.0",
