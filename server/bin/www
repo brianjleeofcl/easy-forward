@@ -90,7 +90,7 @@ function onListening() {
 }
 
 /*
-  Socket.io stuff
+  Socket.io configuration
 */
 
 const knex = require('../knex')
@@ -114,7 +114,17 @@ io.on('connection', client => {
   })
 
   client.on('instruction-record', ([socket_id, interval, iteration]) => {
-    client.to(socket_id).emit('record', [interval, iteration])
+    knex('devices').where('socket_id', socket_id).update('busy', true, '*').then(() => {
+      client.to(socket_id).emit('record', [interval, iteration])
+    })
+  })
+
+  client.on('recording-complete', socket_id => {
+    knex('devices').where('socket_id', socket_id).update('busy', false, '*').then(([device]) => {
+      return knex('users').where('id', device.user_id)
+    }).then(([user]) => {
+      client.to(user.email).emit('device-update')
+    })
   })
 
   client.on('instruction', instruction => {
