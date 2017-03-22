@@ -113,6 +113,8 @@ io.on('connection', client => {
     })
   })
 
+  // client.on('instruction-preview-stream', ([socket_id, id]))
+
   client.on('instruction-record', ([socket_id, interval, iteration]) => {
     knex('devices').where('socket_id', socket_id).update('busy', true, '*').then(() => {
       client.to(socket_id).emit('record', [interval, iteration])
