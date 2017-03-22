@@ -14,7 +14,7 @@
     </ul>
   </div>
   <div class="card-block" *ngIf="device.socket_id && !device.busy">
-    
+    <img src="{{'/device/stream/' + device.id}}" />
   </div>
   <div class="card-block" *ngIf="device.socket_id && !device.busy">
     <h5>Record:</h5>
@@ -22,13 +22,14 @@
       <div class="form-group">
         <label for="model.duration">Total duration: </label>
         <div class="input-group">
-          <input type="number" class="form-control" name="duration" [(ngModel)]="model.duration">
+          <input type="number" class="form-control" name="duration" [(ngModel)]="model.duration" #dur="ngModel">
           <div class="input-group-btn" ngbDropdown>
             <button type="button" class="btn btn-secondary" ngbDropdownToggle>{{model.duration_unit}}</button>
             <div class="dropdown-menu">
               <button class="dropdown-item" (click)="setUnit('duration_unit', 'Second')">Second</button>
               <button class="dropdown-item" (click)="setUnit('duration_unit', 'Minute')">Minute</button>
               <button class="dropdown-item" (click)="setUnit('duration_unit', 'Hour')">Hour</button>
+              <button class="dropdown-item" (click)="setUnit('duration_unit', 'Day')">Day</button>
             </div>
           </div>
         </div>
@@ -36,7 +37,7 @@
       <div class="form-group">
         <label for="model.interval">Interval: </label>
         <div class="input-group">
-          <input type="number" class="form-control" name="interval" [(ngModel)]="model.interval">
+          <input type="number" class="form-control" name="interval" [(ngModel)]="model.interval" #int="ngModel">
           <div class="input-group-btn" ngbDropdown>
             <button type="button" class="btn btn-secondary" ngbDropdownToggle>{{model.interval_unit}}</button>
             <div class="dropdown-menu">
@@ -47,7 +48,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Start recording</button>
+      <button type="submit" class="btn btn-primary" [disabled]="(model.duration * model.duration_unit_val) / (model.interval * model.interval_unit_val) < 1 || dur.pristine || int.pristine">Start recording</button>
     </form>
     <div>{{diagnostic}}</div>
   </div>

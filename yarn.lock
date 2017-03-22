@@ -2200,7 +2200,7 @@ got@^3.2.0:
     read-all-stream "^3.0.0"
     timed-out "^2.0.0"
 
-got@^6.7.1:
+got@^6.3.0, got@^6.7.1:
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/got/-/got-6.7.1.tgz#240cd05785a9a18e561dc1b44b41c763ef1e8db0"
   dependencies:
@@ -2560,6 +2560,10 @@ invariant@^2.2.0:
 invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
+
+ip@^1.1.3:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
 
 ipaddr.js@1.2.0:
   version "1.2.0"
@@ -4395,11 +4399,11 @@ public-encrypt@^4.0.0:
     parse-asn1 "^5.0.0"
     randombytes "^2.0.1"
 
-punycode@1.3.2:
+punycode@1.3.2, punycode@^1.2.4:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.3.2.tgz#9653a036fb7c1ee42342f2325cceefea3926c48d"
 
-punycode@^1.2.4, punycode@^1.4.1:
+punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
@@ -5345,9 +5349,21 @@ term-size@^0.1.0:
   dependencies:
     execa "^0.4.0"
 
+tessel-av@^0.15.1:
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/tessel-av/-/tessel-av-0.15.1.tgz#11249dfc7f37b730ada67e5abab61c4cc766fdb9"
+  dependencies:
+    got "^6.3.0"
+    ip "^1.1.3"
+    tessel-mjpeg-consumer "^1.1.0"
+
 tessel-io@^0.10.1:
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/tessel-io/-/tessel-io-0.10.1.tgz#07892755c6b997571c61bf162ddf2a9912603293"
+
+tessel-mjpeg-consumer@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/tessel-mjpeg-consumer/-/tessel-mjpeg-consumer-1.1.0.tgz#ff6753622f736addd1d57cfba42cc55b7e7b0398"
 
 through@2, through@X.X.X, through@^2.3.6, through@~2.3, through@~2.3.1:
   version "2.3.8"

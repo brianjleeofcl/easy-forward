@@ -1,3 +1,5 @@
+// For testing. Run node device/mock-device-socket.js to mimick the board behavior locally..
+
 const io = require('socket.io-client')
 const socket = io.connect('http://localhost:3000')
 
