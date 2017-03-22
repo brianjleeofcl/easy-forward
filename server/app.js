@@ -13,7 +13,7 @@ app.use(
 )
 
 app.use('/api',require('./api/api'))
-app.use('/device',require('./device/device'))
+app.use('/device-api' ,require('./device-api/device-api'))
 
 app.use(express.static(path.resolve(__dirname, '..', 'dist')));
 

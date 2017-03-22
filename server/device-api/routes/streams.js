@@ -22,6 +22,7 @@ router.get('/:id', auth, (req, res, next) => {
   // knex('devices').where('id', req.params.id).then(([device]) => {
   //   device.socket_id
   // })
+  next(boom.notFound())
 })
 
 module.exports = router;
