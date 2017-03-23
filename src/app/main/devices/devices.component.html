@@ -1,35 +1,40 @@
-<div class="card">
-  <div class="card-header">
-    <h4>Device Overview</h4>
-  </div>
-  <div class="card-block">
-    <div *ngIf="devices.length>0">
-      <table class="table">
-        <thead class="thead-default">
-          <tr>
-            <th>Nickname</th>
-            <th>Status</th>
-            <th>Last connected</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let device of devices">
-            <td>{{device.nickname}}</td>
-            <td>
-              <span *ngIf="device.socket_id">Connected</span>
-              <span *ngIf="!device.socket_id">Not connected</span>
-            </td>
-            <td>{{device.updated_at | date:'medium'}}</td>
-            <td>
-              <a class="btn btn-info" [routerLink]="['/device', device.id]">Details</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div *ngIf="devices.length===0">
-      <div class="alert">No devices</div>
+<div class="row mt-3">
+  <div class="col-12 col-md-8 offset-md-2">
+    <div class="card">
+      <div class="card-header">
+        <h4>Device Overview</h4>
+      </div>
+      <div class="card-block">
+        <div *ngIf="devices.length>0">
+          <table class="table">
+            <thead class="thead-default">
+              <tr>
+                <th>Nickname</th>
+                <th>Status</th>
+                <th>Last connected</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let device of devices">
+                <td>{{device.nickname}}</td>
+                <td>
+                  <span *ngIf="!device.socket_id" class="text-danger">disconnected</span>
+                  <span *ngIf="device.socket_id && !device.busy" class="text-success">ready</span>
+                  <span *ngIf="device.socket_id && device.busy" class="text-info">recording</span>
+                </td>
+                <td>{{device.updated_at | date:'medium'}}</td>
+                <td>
+                  <a class="btn btn-info" [routerLink]="['/device', device.id]">Details</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div *ngIf="devices.length===0">
+          <div class="alert">No devices</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

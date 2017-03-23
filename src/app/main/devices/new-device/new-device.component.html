@@ -1,20 +1,24 @@
-<div class="card">
-  <div class="card-header">
-    <h4>Register new device</h4>
+<div class="row mt-3">
+  <div class="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+    <div class="card">
+      <div class="card-header">
+        <h4>Register new device</h4>
+      </div>
+      <form (ngSubmit)="handleSubmit()">
+        <div class="card-block">
+          <div class="form-group">
+            <label for="">MAC Address</label>
+            <input type="string" class="form-control" [(ngModel)]="model.MAC_address" name="MAC_address">
+          </div>
+          <div class="form-group">
+            <label for="">Nickname</label>
+            <input type="string" class="form-control" [(ngModel)]="model.nickname" name="nickname">
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-primary">Add device</button>
+        </div>
+      </form>
+    </div>
   </div>
-  <form (ngSubmit)="handleSubmit()">
-    <div class="card-block">
-      <div class="form-group">
-        <label for="">MAC Address</label>
-        <input type="string" class="form-control" [(ngModel)]="model.MAC_address" name="MAC_address">
-      </div>
-      <div class="form-group">
-        <label for="">Nickname</label>
-        <input type="string" class="form-control" [(ngModel)]="model.nickname" name="nickname">
-      </div>
-    </div>
-    <div class="card-footer">
-      <button type="submit" class="btn btn-primary">Add device</button>
-    </div>
-  </form>
 </div>

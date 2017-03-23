@@ -1,57 +1,60 @@
-<div class="card">
-  <div class="card-header">
-    <h4>Details: {{device.nickname}}</h4>
-  </div>
-  <div class="card-block">
-    <ul>
-      <li>Status: 
-        <span *ngIf="!device.socket_id" class="text-danger">disconnected</span>
-        <span *ngIf="device.socket_id && !device.busy" class="text-success">ready</span>
-        <span *ngIf="device.socket_id && device.busy" class="text-info">recording</span>
-      </li>
-      <li>MAC Address: {{device.MAC_address | uppercase}}</li>
-      <li>Registed date: {{device.created_at | date:'medium'}}</li>
-    </ul>
-  </div>
-  <div class="card-block" *ngIf="device.socket_id && !device.busy">
-    <img src="{{'/device-api/streams/' + device.id}}" />
-  </div>
-  <div class="card-block" *ngIf="device.socket_id && !device.busy">
-    <h5>Record:</h5>
-    <form class="form-inline justify-content-between" (submit)="start()">
-      <div class="form-group">
-        <label for="model.duration">Total duration: </label>
-        <div class="input-group">
-          <input type="number" class="form-control" name="duration" [(ngModel)]="model.duration" #dur="ngModel">
-          <div class="input-group-btn" ngbDropdown>
-            <button type="button" class="btn btn-secondary" ngbDropdownToggle>{{model.duration_unit}}</button>
-            <div class="dropdown-menu">
-              <button class="dropdown-item" (click)="setUnit('duration_unit', 'Second')">Second</button>
-              <button class="dropdown-item" (click)="setUnit('duration_unit', 'Minute')">Minute</button>
-              <button class="dropdown-item" (click)="setUnit('duration_unit', 'Hour')">Hour</button>
-              <button class="dropdown-item" (click)="setUnit('duration_unit', 'Day')">Day</button>
+<div class="row mt-3">
+  <div class="col-12 col-md-8 offset-md-2">
+    <div class="card">
+      <div class="card-header">
+        <h4>Details: {{device.nickname}}</h4>
+      </div>
+      <div class="card-block">
+        <ul>
+          <li>Status: 
+            <span *ngIf="!device.socket_id" class="text-danger">disconnected</span>
+            <span *ngIf="device.socket_id && !device.busy" class="text-success">ready</span>
+            <span *ngIf="device.socket_id && device.busy" class="text-info">recording</span>
+          </li>
+          <li>MAC Address: {{device.MAC_address | uppercase}}</li>
+          <li>Registed date: {{device.created_at | date:'medium'}}</li>
+        </ul>
+      </div>
+      <div class="card-block" *ngIf="device.socket_id && !device.busy">
+        <img src="{{'/device-api/streams/' + device.id}}" />
+      </div>
+      <div class="card-block" *ngIf="device.socket_id && !device.busy">
+        <h5>Record:</h5>
+        <form class="form-inline justify-content-between" (submit)="start()">
+          <div class="form-group">
+            <label for="model.duration">Total duration: </label>
+            <div class="input-group">
+              <input type="number" class="form-control" name="duration" [(ngModel)]="model.duration" #dur="ngModel">
+              <div class="input-group-btn" ngbDropdown>
+                <button type="button" class="btn btn-secondary" ngbDropdownToggle>{{model.duration_unit}}</button>
+                <div class="dropdown-menu">
+                  <button class="dropdown-item" (click)="setUnit('duration_unit', 'Second')">Second</button>
+                  <button class="dropdown-item" (click)="setUnit('duration_unit', 'Minute')">Minute</button>
+                  <button class="dropdown-item" (click)="setUnit('duration_unit', 'Hour')">Hour</button>
+                  <button class="dropdown-item" (click)="setUnit('duration_unit', 'Day')">Day</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="model.interval">Interval: </label>
-        <div class="input-group">
-          <input type="number" class="form-control" name="interval" [(ngModel)]="model.interval" #int="ngModel">
-          <div class="input-group-btn" ngbDropdown>
-            <button type="button" class="btn btn-secondary" ngbDropdownToggle>{{model.interval_unit}}</button>
-            <div class="dropdown-menu">
-              <button class="dropdown-item" (click)="setUnit('interval_unit', 'Second')">Second</button>
-              <button class="dropdown-item" (click)="setUnit('interval_unit', 'Minute')">Minute</button>
-              <button class="dropdown-item" (click)="setUnit('interval_unit', 'Hour')">Hour</button>
+          <div class="form-group">
+            <label for="model.interval">Interval: </label>
+            <div class="input-group">
+              <input type="number" class="form-control" name="interval" [(ngModel)]="model.interval" #int="ngModel">
+              <div class="input-group-btn" ngbDropdown>
+                <button type="button" class="btn btn-secondary" ngbDropdownToggle>{{model.interval_unit}}</button>
+                <div class="dropdown-menu">
+                  <button class="dropdown-item" (click)="setUnit('interval_unit', 'Second')">Second</button>
+                  <button class="dropdown-item" (click)="setUnit('interval_unit', 'Minute')">Minute</button>
+                  <button class="dropdown-item" (click)="setUnit('interval_unit', 'Hour')">Hour</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+          <button type="submit" class="btn btn-primary" [disabled]="(model.duration * model.duration_unit_val) / (model.interval * model.interval_unit_val) < 1 || dur.pristine || int.pristine">Start recording</button>
+        </form>
+        <div>{{diagnostic}}</div>
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="(model.duration * model.duration_unit_val) / (model.interval * model.interval_unit_val) < 1 || dur.pristine || int.pristine">Start recording</button>
-    </form>
-    <div>{{diagnostic}}</div>
+    </div>
   </div>
 </div>
-
 
