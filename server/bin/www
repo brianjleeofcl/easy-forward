@@ -101,10 +101,10 @@ io.on('connection', client => {
     knex('users').where('id', id).then(([user]) => client.join(user.email))
   })
 
-  client.on('initialize-device-user', MAC => {
+  client.on('initialize-device-user', ([MAC, url]) => {
     knex('devices').where('MAC_address', MAC.toLowerCase()).then(([device]) => {
       if (device) {
-        knex('devices').where('MAC_address', MAC.toLowerCase()).update({socket_id: client.id, busy: false}, '*').then(([updatedDevice]) => {
+        knex('devices').where('MAC_address', MAC.toLowerCase()).update({socket_id: client.id, url, busy: false}, '*').then(([updatedDevice]) => {
           return knex('users').where('id', device.user_id)
         }).then(([user]) => client.to(user.email).emit('device-ready', device.id))
       } else {

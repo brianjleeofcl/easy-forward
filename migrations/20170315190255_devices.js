@@ -5,6 +5,7 @@ exports.up = function(knex) {
     table.integer('user_id').references('id').inTable('users').notNullable().index()
     table.string('nickname').notNullable()
     table.specificType('MAC_address', 'char(17)')
+    table.string('url').defaultTo(null)
     table.string('socket_id').defaultTo(null)
     table.boolean('busy').defaultTo(false)
     table.timestamps(true, true)
