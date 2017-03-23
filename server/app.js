@@ -23,7 +23,7 @@ app.get('*', (req, res) => {
 
 app.use((err, req, res, next) => {
   console.error(err)
-  res.sendStatus(err.output.status).end(err.output)
+  res.sendStatus(err.output.status || err.status).end(err.output)
 })
 
 module.exports = app;
