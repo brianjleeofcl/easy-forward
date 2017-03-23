@@ -1,0 +1,15 @@
+
+exports.up = function(knex) {
+  return knex.schema.createTable('projects', table => {
+    table.increments()
+    table.integer('user_id').references('id').inTable('users').notNullable().index()
+    table.string('hash_id')
+    table.integer('last_frame_index')
+    table.string('published_url').defaultTo(null)
+    table.timestamps(true, true)
+  })
+};
+
+exports.down = function(knex) {
+  return knex.schema.dropTable('projects')
+};
