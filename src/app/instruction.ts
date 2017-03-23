@@ -1,3 +1,5 @@
+import { TimeUnit } from './time-unit';
+
 export class Instruction {
   duration: number;
   duration_unit_val: TimeUnit;

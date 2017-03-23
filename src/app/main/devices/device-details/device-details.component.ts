@@ -10,8 +10,7 @@ import { ProjectsService } from '../../../projects.service';
 
 import { Device } from '../../../device';
 import { Instruction } from '../../../instruction';
-
-enum TimeUnit {Second = 1000, Minute = 60000, Hour = 3600000, Day = 86400000}
+import { TimeUnit } from '../../../time-unit';
 
 @Component({
   selector: 'app-device-details',
