@@ -35,8 +35,8 @@ router.post('/:hash/:index', (req, res, next) => {
           
           return knex('projects').where('hash_id', hash).update({last_frame_index}, '*')
         }).then(([project]) => {
-          res.send(project.last_frame_index)
-        })
+          res.send(project)
+        }).catch(err => next(boom.create(err)))
       }
     })
   })

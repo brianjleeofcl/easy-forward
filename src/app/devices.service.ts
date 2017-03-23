@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http'
-import { Subject } from 'rxjs/Subject';
+// import { Subject } from 'rxjs/Subject';
+
+import 'rxjs/add/operator/toPromise';
 
 import { Device } from './device'
 

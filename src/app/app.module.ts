@@ -21,6 +21,7 @@ import { DeviceDetailsComponent } from './main/devices/device-details/device-det
 
 import { UsersService } from './users.service';
 import { DevicesService } from './devices.service';
+import { ProjectsService } from './projects.service';
 import { SocketService } from './socket.service';
 
 @NgModule({
@@ -46,7 +47,8 @@ import { SocketService } from './socket.service';
   providers: [
     UsersService,
     SocketService,
-    DevicesService
+    DevicesService,
+    ProjectsService
   ],
   bootstrap: [AppComponent]
 })

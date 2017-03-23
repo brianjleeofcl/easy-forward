@@ -21,6 +21,7 @@ function auth(req, res, next) {
 
 router.get('/', auth, (req, res, next) => {
   knex('projects').where('user_id', req.claim.id).then((projects) => res.send(projects))
+    .catch(err => next(boom.create(err)))
 });
 
 router.get('/:id', auth, (req, res, next) => {
@@ -33,17 +34,22 @@ router.get('/:id', auth, (req, res, next) => {
     }
 
     res.send(project)
-  })
+  }).catch(err => next(boom.create(err)))
 })
 
 router.post('/new', auth, (req, res, next) => {
   const user_id = req.claim.id
+  const { duration, interval } = req.body
 
-  knex('projects').insert({user_id}, '*').then(([project]) => {
+  if (!user_id || !duration || !interval) {
+    next(boom.badRequest('Missing input'))
+  }
+
+  knex('projects').insert({user_id, duration, interval}, '*').then(([project]) => {
     const hash_id = hash.encode(project.id)
 
     return knex('projects').where('id', project.id).update({hash_id}, '*')
-  }).then(([augProject]) => res.send(augProject))
+  }).then(([augProject]) => res.send(augProject)).catch(err => next(boom.create(err)))
 });
 
 module.exports = router;

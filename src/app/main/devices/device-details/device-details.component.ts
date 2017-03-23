@@ -6,29 +6,12 @@ import 'rxjs/add/operator/switchMap';
 
 import { DevicesService } from '../../../devices.service';
 import { SocketService } from '../../../socket.service';
+import { ProjectsService } from '../../../projects.service';
 
 import { Device } from '../../../device';
+import { Instruction } from '../../../instruction';
 
 enum TimeUnit {Second = 1000, Minute = 60000, Hour = 3600000, Day = 86400000}
-
-class InstructionForm {
-  duration: number;
-  duration_unit_val: TimeUnit;
-  get duration_unit(): string {
-    return TimeUnit[this.duration_unit_val]
-  }
-  set duration_unit(unit: string) {
-    this.duration_unit_val = TimeUnit[unit]
-  }
-  interval: number;
-  interval_unit_val: TimeUnit;
-  get interval_unit(): string {
-    return TimeUnit[this.interval_unit_val]
-  }
-  set interval_unit(unit: string) {
-    this.interval_unit_val = TimeUnit[unit]
-  }
-}
 
 @Component({
   selector: 'app-device-details',
@@ -37,16 +20,17 @@ class InstructionForm {
 })
 export class DeviceDetailsComponent implements OnInit {
   device: Device;
-  model: InstructionForm;
+  model: Instruction;
 
   constructor(
     private socket: SocketService,
     private dS: DevicesService,
+    private pS: ProjectsService,
     private route: ActivatedRoute,
     private location: Location
   ) { 
     this.device = new Device()
-    this.model = new InstructionForm()
+    this.model = new Instruction()
   }
 
   ngOnInit() {
@@ -63,8 +47,12 @@ export class DeviceDetailsComponent implements OnInit {
   start(): void {
     const {duration, duration_unit_val, interval, interval_unit_val} = this.model
     const iteration: number = (duration * duration_unit_val) / (interval * interval_unit_val);
-    
-    this.socket.sendInstructions(this.device.socket_id, interval * interval_unit_val, iteration)
+
+    this.pS.startNewProject(this.model).then(project => {
+      const hash: string = project.hash_id
+
+      this.socket.sendInstructions(this.device.socket_id, interval * interval_unit_val, iteration, hash)
+    })
   }
 
   get diagnostic() {

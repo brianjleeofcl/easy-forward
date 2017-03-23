@@ -11,11 +11,11 @@ export class SocketService {
     }).on('device-update', () => console.log('device updated'))
   }
 
-  onLoad(id: number) {
+  onLoad(id: number): void {
     this.socket.on('connect', () => this.socket.emit('initialize-browser-user', id))
   }
 
-  sendInstructions(socket_id: string, interval: number, iteration: number) {
-    this.socket.emit('instruction-record', [socket_id, interval, iteration])
+  sendInstructions(socket_id: string, interval: number, iteration: number, hash: string): void {
+    this.socket.emit('instruction-record', [socket_id, interval, iteration, hash])
   }
 }

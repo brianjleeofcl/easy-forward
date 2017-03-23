@@ -108,16 +108,16 @@ io.on('connection', client => {
           return knex('users').where('id', device.user_id)
         }).then(([user]) => client.to(user.email).emit('device-ready', device.id))
       } else {
-        client.join('unassigned')
+        client.join(MAC)
       }
     })
   })
 
   // client.on('instruction-preview-stream', ([socket_id, id]))
 
-  client.on('instruction-record', ([socket_id, interval, iteration]) => {
+  client.on('instruction-record', ([socket_id, interval, iteration, hash]) => {
     knex('devices').where('socket_id', socket_id).update('busy', true, '*').then(() => {
-      client.to(socket_id).emit('device-record', [interval, iteration])
+      client.to(socket_id).emit('device-record', [interval, iteration, hash])
     })
   })
 
@@ -127,11 +127,6 @@ io.on('connection', client => {
     }).then(([user]) => {
       client.to(user.email).emit('device-update')
     })
-  })
-
-  client.on('instruction', instruction => {
-    console.log('instructions: ', instruction)
-    client.send('Got it!')
   })
 
   client.on('disconnect', () => {
