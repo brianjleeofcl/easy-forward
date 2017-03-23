@@ -19,7 +19,7 @@ function auth(req, res, next) {
 };
 
 router.get('/:id', auth, (req, res, next) => {
-  knex('devices').where('id', req.params.id).then(([{url}]) => res.redirect(url))
+  knex('devices').where('id', req.params.id).then(([{url}]) => res.redirect(url));
 })
 
 module.exports = router;
