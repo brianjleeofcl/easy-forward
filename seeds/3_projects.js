@@ -5,7 +5,15 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('projects').insert([
-        {id: 1, user_id: 1, hash_id:'VolejRejNm', last_frame_index: 20, published_url: 'http://temporary-url'}
+        {
+          id: 1, 
+          user_id: 1, 
+          duration: 1000 * 60 * 60,
+          interval: 1000 * 60 * 3,
+          hash_id:'VolejRejNm', 
+          last_frame_index: 20, 
+          published_url: 'http://temporary-url'
+        }
       ]);
     }).then(() => {
       return knex.raw(
