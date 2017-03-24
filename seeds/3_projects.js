@@ -8,11 +8,12 @@ exports.seed = function(knex) {
         {
           id: 1, 
           user_id: 1, 
-          duration: 1000 * 60 * 60,
-          interval: 1000 * 60 * 3,
-          hash_id:'VolejRejNm', 
-          last_frame_index: 20, 
-          published_url: 'http://temporary-url'
+          duration: 1000 * 60 * 3,
+          interval: 1000 * 3,
+          hash_id:'k8mep2bMyJ', 
+          last_frame_index: 53,
+          recording_completed_at: new Date(),
+          published_url: null
         }
       ]);
     }).then(() => {

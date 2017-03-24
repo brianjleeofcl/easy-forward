@@ -14,7 +14,12 @@ router.post('/:hash/:index', (req, res, next) => {
   const paddedIndex = leftPad(index, 3, '0');
   const reqBuffer = [];
 
-  req.on('data', chunk => reqBuffer.push(chunk)).on('end', () => {
+  console.log(`request received: ${index}`)
+  req.on('data', chunk => {
+    console.log(`incoming data for ${index}`)
+    reqBuffer.push(chunk)
+  }).on('end', () => {
+    console.log('request body received')
     const reqBody = Buffer.concat(reqBuffer)
     s3.putObject({
       ACL: 'public-read',
@@ -28,6 +33,7 @@ router.post('/:hash/:index', (req, res, next) => {
         console.error(err);
         next(boom.notImplemented('S3 Error', err))
       } else {
+        console.log(`${index}: posted to s3 successfully`)
         knex('projects').where('hash_id', hash).then(([project]) => {
           const last_frame_index = project.last_frame_index < index 
             ? index 
@@ -35,6 +41,7 @@ router.post('/:hash/:index', (req, res, next) => {
           
           return knex('projects').where('hash_id', hash).update({last_frame_index}, '*')
         }).then(([project]) => {
+          console.log(project.last_frame_index)
           res.send(project)
         }).catch(err => next(boom.create(err)))
       }

@@ -20,6 +20,7 @@ import { TimeUnit } from '../../../time-unit';
 export class DeviceDetailsComponent implements OnInit {
   device: Device;
   model: Instruction;
+  submitable: boolean;
 
   constructor(
     private socket: SocketService,
@@ -30,6 +31,7 @@ export class DeviceDetailsComponent implements OnInit {
   ) { 
     this.device = new Device()
     this.model = new Instruction()
+    this.submitable = true;
   }
 
   ngOnInit() {
@@ -51,6 +53,7 @@ export class DeviceDetailsComponent implements OnInit {
       const hash: string = project.hash_id
 
       this.socket.sendInstructions(this.device.socket_id, interval * interval_unit_val, iteration, hash)
+      this.submitable = false
     })
   }
 

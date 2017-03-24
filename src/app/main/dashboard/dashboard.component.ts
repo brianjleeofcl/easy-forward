@@ -6,8 +6,7 @@ import { Project } from '../../project';
 class ProjectsList {
   all: Project[]
 
-
-  constructor(arr) {
+  constructor(arr: Project[]) {
     this.all = arr
   }
 
@@ -31,10 +30,16 @@ class ProjectsList {
 })
 export class DashboardComponent implements OnInit {
   projects: ProjectsList;
-  constructor(private pS: ProjectsService) { }
+  constructor(private pS: ProjectsService) {
+    this.projects = new ProjectsList([new Project()])
+  }
 
   ngOnInit() {
     this.pS.getAllProjects().then(arr => this.projects = new ProjectsList(arr));
+  }
+
+  stringify(obj: Object): string {
+    return JSON.stringify(obj)
   }
 
 }

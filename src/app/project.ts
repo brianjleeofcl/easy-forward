@@ -5,6 +5,6 @@ export class Project {
   interval: number;
   hash_id?: string;
   last_frame_index?: number;
-  recording_completed_at?: string;
+  recording_completed_at?: null | string;
   published_url?: string; 
 }
