@@ -8,6 +8,7 @@ import { DashboardComponent } from './main/dashboard/dashboard.component';
 import { DevicesComponent } from './main/devices/devices.component';
 import { NewDeviceComponent } from './main/devices/new-device/new-device.component';
 import { DeviceDetailsComponent } from './main/devices/device-details/device-details.component';
+import { ProjectDetailsComponent } from './main/dashboard/project-details/project-details.component'; 
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  {
+    path: 'projects/:id',
+    component: ProjectDetailsComponent
   },
   {
     path: 'devices',

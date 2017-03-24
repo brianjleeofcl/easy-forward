@@ -24,6 +24,7 @@ import { UsersService } from './users.service';
 import { DevicesService } from './devices.service';
 import { ProjectsService } from './projects.service';
 import { SocketService } from './socket.service';
+import { ProjectDetailsComponent } from './main/dashboard/project-details/project-details.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { SocketService } from './socket.service';
     DashboardComponent,
     DevicesComponent,
     NewDeviceComponent,
-    DeviceDetailsComponent
+    DeviceDetailsComponent,
+    ProjectDetailsComponent
   ],
   imports: [
     BrowserModule,
