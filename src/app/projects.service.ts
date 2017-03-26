@@ -20,7 +20,10 @@ export class ProjectsService {
   }
 
   startNewProject(instruction: Instruction): Promise<Project> {
-    return this.http.post('/api/projects/new', instruction).toPromise().then(res => res.json()).catch(this.handleError)
+    const interval = instruction.interval * instruction.interval_unit_val
+    const duration = instruction.duration * instruction.duration_unit_val
+    
+    return this.http.post('/api/projects/new', {interval, duration}).toPromise().then(res => res.json()).catch(this.handleError)
   }
 
   private handleError(error: any): Promise<any> {

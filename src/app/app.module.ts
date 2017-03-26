@@ -25,6 +25,7 @@ import { DevicesService } from './devices.service';
 import { ProjectsService } from './projects.service';
 import { SocketService } from './socket.service';
 import { ProjectDetailsComponent } from './main/dashboard/project-details/project-details.component';
+import { GalleryService } from './gallery.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ProjectDetailsComponent } from './main/dashboard/project-details/projec
     UsersService,
     SocketService,
     DevicesService,
-    ProjectsService
+    ProjectsService,
+    GalleryService
   ],
   bootstrap: [AppComponent]
 })

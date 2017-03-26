@@ -105,35 +105,36 @@ io.on('connection', client => {
     knex('devices').where('MAC_address', MAC.toLowerCase()).then(([device]) => {
       if (device) {
         knex('devices').where('MAC_address', MAC.toLowerCase()).update({socket_id: client.id, url, busy: false, updated_at: new Date()}, '*').then(([updatedDevice]) => {
-          return knex('users').where('id', device.user_id)
-        }).then(([user]) => client.to(user.email).emit('device-ready', device.id))
+          return knex('users').where('id', device.user_id);
+        }).then(([user]) => client.to(user.email).emit('device-ready', device.id));
       } else {
-        client.join(MAC)
+        client.join(MAC);
       }
-    })
-  })
+    });
+  });
 
   client.on('instruction-record', ([socket_id, interval, iteration, hash]) => {
     knex('devices').where('socket_id', socket_id).update('busy', true, '*').then(() => {
-      client.to(socket_id).emit('device-record', [interval, iteration, hash])
-    })
-  })
+      client.to(socket_id).emit('device-record', [interval, iteration, hash]);
+    });
+  });
 
-  client.on('device-record-complete', socket_id => {
+  client.on('device-record-complete', ([socket_id, hash]) => {
+    knex('projects').where('hash_id', hash).update('recording_completed_at', new Date(), '*').then(arr => {});
     knex('devices').where('socket_id', socket_id).update('busy', false, '*').then(([device]) => {
-      return knex('users').where('id', device.user_id)
+      return knex('users').where('id', device.user_id);
     }).then(([user]) => {
-      client.to(user.email).emit('device-update')
-    })
-  })
+      client.to(user.email).emit('device-update');
+    });
+  });
 
   client.on('disconnect', () => {
     knex('devices').where('socket_id', client.id).then(([device]) => {
       if (device) {
         knex('devices').where('id', device.id).update('socket_id', null, '*').then(([disconnectedDevice]) => {
-          return knex('users').select('email').where('id', disconnectedDevice.user_id)
-        }).then(([{ email }]) => client.to(email).emit('device-update'))
+          return knex('users').select('email').where('id', disconnectedDevice.user_id);
+        }).then(([{ email }]) => client.to(email).emit('device-update'));
       }
-    })
-  })
-})
+    });
+  });
+});
