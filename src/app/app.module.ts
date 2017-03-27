@@ -1,4 +1,4 @@
-import { BrowserModule, Title, Meta } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -57,8 +57,7 @@ import { GalleryService } from './gallery.service';
     DevicesService,
     ProjectsService,
     GalleryService,
-    Title,
-    Meta
+    Title
   ],
   bootstrap: [AppComponent]
 })
