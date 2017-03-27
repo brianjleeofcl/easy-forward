@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="card-footer">
-        <form class="form">
+        <form class="form" (submit)="publish()">
           <div class="row">
             <div class="input-group col-7">
               <div class="input-group-addon">{{project.last_frame_index}} frames</div>
@@ -40,7 +40,7 @@
               <input type="text" class="form-control col-10" name="title" [(ngModel)]="title">
             </div>           
             <div class="col-3">
-              <button type="button" class="btn btn-primary">Publish</button>
+              <button type="submit" class="btn btn-primary">Publish</button>
             </div>
           </div>
         </form>

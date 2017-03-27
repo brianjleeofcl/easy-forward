@@ -23,4 +23,5 @@ export class PublishingInstruction {
   url: string;
   delay: number;
   title: string;
+  last_frame_index: number;
 }

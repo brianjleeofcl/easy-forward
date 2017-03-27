@@ -8,7 +8,7 @@ exports.up = function(knex) {
     table.string('hash_id');
     table.integer('last_frame_index').defaultTo(0);
     table.timestamp('recording_completed_at').defaultTo(null);
-    table.string('published_url').defaultTo(null);
+    table.timestamp('published_at').defaultTo(null);
     table.timestamps(true, true);
   });
 };

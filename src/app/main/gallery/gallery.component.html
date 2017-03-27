@@ -1,22 +1,17 @@
 <div class="row mt-3">
-  <div class="col-12 col-md-8 offset-md-2">
-    <div class="col-12 col-md-6 mt-2" *ngFor="let image of images">
-      <div class="card">
-        <img class="card-img-top img-fluid" src="" alt="">
-        <div class="card-block">
-          <div class="card-title">
-            <strong>{{image.title}}</strong> by {{image.name}}
-          </div>
-          <small>Created: {{image.created_at | amCalendar}}</small>
+  <div class="col-12 col-md-4 mt-2" *ngFor="let image of images">
+    <div class="card">
+      <img class="card-img-top img-fluid" src="https://s3-us-west-2.amazonaws.com/brianjleeofcl-capstone-gif/{{image.url}}.gif" alt="">
+      <div class="card-block">
+        <div class="card-title">
+          <strong>{{image.title}}</strong> by {{image.name}}
         </div>
+        <small>Created: {{image.created_at | amCalendar}}</small>
       </div>
     </div>
   </div>
 </div>
 
 
-<p>
-  gallery works!
-</p>
 
 <h5>{{stringify(images)}}</h5>

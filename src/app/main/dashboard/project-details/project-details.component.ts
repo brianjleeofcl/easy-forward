@@ -51,9 +51,14 @@ export class ProjectDetailsComponent implements OnInit {
     const instruction: PublishingInstruction = {
       url: this.project.hash_id,
       delay: Math.round(100 / this.fps),
-      title: this.title
+      title: this.title,
+      last_frame_index: this.project.last_frame_index
     }
-    this.gS.publishToGallery(instruction).then(({url}) => this.router.navigate(['/gallery']))
+    this.gS.publishToGallery(instruction).then(({url}) => {
+      console.log(url);
+      
+      // this.router.navigate(['/gallery', url])
+    })
   }
 
   stringify(obj: any): string {
