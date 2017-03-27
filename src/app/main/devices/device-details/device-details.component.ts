@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
+import { Title } from '@angular/platform-browser'
 
 import 'rxjs/add/operator/switchMap';
 
@@ -26,6 +27,7 @@ export class DeviceDetailsComponent implements OnInit {
     private socket: SocketService,
     private dS: DevicesService,
     private pS: ProjectsService,
+    private title: Title,
     private route: ActivatedRoute,
     private location: Location
   ) { 
@@ -36,7 +38,10 @@ export class DeviceDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.switchMap((params: Params) => this.dS.getDevice(+params['id']))
-      .subscribe(device => this.device = device);
+      .subscribe(device => {
+        this.device = device;
+        this.title.setTitle(`${device.nickname} — details`)
+      });
     this.model.duration_unit_val = TimeUnit.Minute;
     this.model.interval_unit_val = TimeUnit.Second;
   }

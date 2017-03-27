@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -18,6 +19,7 @@ export class GalleryDetailsComponent implements OnInit {
 
   constructor(
     private gS: GalleryService,
+    private title: Title,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location
@@ -27,7 +29,10 @@ export class GalleryDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.switchMap((params: Params) => this.gS.getImage(params['url']))
-      .subscribe(image => this.image = image); 
+      .subscribe(image => {
+        this.image = image
+        this.title.setTitle(`View ${image.title}`)
+      }); 
   }
 
 }
