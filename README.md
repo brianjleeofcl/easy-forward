@@ -1,10 +1,10 @@
 # CapstoneProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
+Brian J Lee, created March 2017.
 
 ## Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Time lapse camera, built using Tessel 2 development board, incorporating Socket.io, ImageMagic and Express.js; frontend built using Angular 2.4
 
 ## Installation
 
@@ -17,11 +17,11 @@ Initialize [Tessel 2 and T2-CLI](http://tessel.github.io/t2-start/). Run the dev
 ### Development
 Run `yarn` or `npm install` to install dependencies. Run `yarnpkg knex migrate:latest` (or `npm run knex migrate:latest`) and `yarnpkg knex seed:run` (or `npm run knex seed:run`) to initialize database.
 
-Start development server with `yarnpkg start` or `npm start`. `http://localhost:4200` proxies to backend running on `http://localhost:3000` by default;.
+Start development server with `yarnpkg start` or `npm start`. `http://localhost:4200` proxies to backend running on `http://localhost:3000` by default.
 
 ## Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
 
 ## Technology
 
@@ -45,10 +45,10 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 * Hardware: [Tessel 2](https://tessel.io/)
 * Software: [Johnny-Five](http://johnny-five.io/)
 
-
-
 ## Further Development
 
 ##### TODO
 * Improve styling
 * Improve device stability
+* Meta tags (service incorporated in Angular 4.0.0, consider migrating once dependencies catch up!)
+* NativeScript
