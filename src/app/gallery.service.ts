@@ -19,7 +19,7 @@ export class GalleryService {
     return this.http.get(`/api/images/${url}`).toPromise().then(res => res.json()).catch(this.handleError)
   }
 
-  publishToGallery(instructions: PublishingInstruction) {
+  publishToGallery(instructions: PublishingInstruction): Promise<Image> {
     return this.http.post(`/api/images/new/`, instructions).toPromise().then(res => res.json()).catch(this.handleError)
   }
 
