@@ -9,11 +9,16 @@ import { DevicesComponent } from './main/devices/devices.component';
 import { NewDeviceComponent } from './main/devices/new-device/new-device.component';
 import { DeviceDetailsComponent } from './main/devices/device-details/device-details.component';
 import { ProjectDetailsComponent } from './main/dashboard/project-details/project-details.component'; 
+import { GalleryDetailsComponent } from './main/gallery/gallery-details/gallery-details.component'
 
 const routes: Routes = [
   {
     path: '',
     component: GalleryComponent
+  },
+  {
+    path: 'details/:url',
+    component: GalleryDetailsComponent
   },
   {
     path: 'dashboard',

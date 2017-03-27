@@ -2,7 +2,7 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isCollapsed = !isCollapsed" aria-controls="navbarNavDropdown" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <h1 class="navbar-brand">NAME OF PROJECT</h1>
+  <a class="navbar-brand" routerLink="/">NAME OF PROJECT</a>
   <div class="navbar-collapse collapse d-flex justify-content-between" id="navbarNavDropdown" [ngbCollapse]="isCollapsed">
     <div>
       <span class="navbar-text" *ngIf="logged">Welcome, {{user.name}}</span>

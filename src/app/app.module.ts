@@ -19,12 +19,13 @@ import { DashboardComponent } from './main/dashboard/dashboard.component';
 import { DevicesComponent } from './main/devices/devices.component';
 import { NewDeviceComponent } from './main/devices/new-device/new-device.component';
 import { DeviceDetailsComponent } from './main/devices/device-details/device-details.component';
+import { ProjectDetailsComponent } from './main/dashboard/project-details/project-details.component';
+import { GalleryDetailsComponent } from './main/gallery/gallery-details/gallery-details.component';
 
 import { UsersService } from './users.service';
 import { DevicesService } from './devices.service';
 import { ProjectsService } from './projects.service';
 import { SocketService } from './socket.service';
-import { ProjectDetailsComponent } from './main/dashboard/project-details/project-details.component';
 import { GalleryService } from './gallery.service';
 
 @NgModule({
@@ -39,7 +40,8 @@ import { GalleryService } from './gallery.service';
     DevicesComponent,
     NewDeviceComponent,
     DeviceDetailsComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    GalleryDetailsComponent
   ],
   imports: [
     BrowserModule,
