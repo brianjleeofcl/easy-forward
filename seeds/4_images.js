@@ -9,7 +9,8 @@ exports.seed = function(knex) {
           id: 1,
           user_id: 1,
           url: 'k8mep2bMyJ',
-          title: 'Test shot, Thursday afternoon'
+          title: 'Test shot, Thursday afternoon',
+          created_at: new Date()
         }
       ]);
     });

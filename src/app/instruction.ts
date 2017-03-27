@@ -1,6 +1,6 @@
 import { TimeUnit } from './time-unit';
 
-export class Instruction {
+export class CameraInstruction {
   duration: number;
   duration_unit_val: TimeUnit;
   get duration_unit(): string {
@@ -17,4 +17,10 @@ export class Instruction {
   set interval_unit(unit: string) {
     this.interval_unit_val = TimeUnit[unit]
   }
+}
+
+export class PublishingInstruction {
+  url: string;
+  delay: number;
+  title: string;
 }

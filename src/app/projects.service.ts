@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Instruction } from './instruction';
+import { CameraInstruction } from './instruction';
 import { Project } from './project';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class ProjectsService {
     return this.http.get(`/api/projects/${id}`).toPromise().then(res => res.json()).catch(this.handleError)
   }
 
-  startNewProject(instruction: Instruction): Promise<Project> {
+  startNewProject(instruction: CameraInstruction): Promise<Project> {
     const interval = instruction.interval * instruction.interval_unit_val
     const duration = instruction.duration * instruction.duration_unit_val
     

@@ -21,7 +21,29 @@
         </div>
       </div>
       <div class="card-footer">
-        <button type="button" class="btn btn-primary">Publish</button>
+        <form class="form">
+          <div class="row">
+            <div class="input-group col-7">
+              <div class="input-group-addon">{{project.last_frame_index}} frames</div>
+              <div class="input-group-addon">÷</div>
+              <input type="number" class="form-control" [(ngModel)]="fps" name="fps">
+              <div class="input-group-addon">frames/sec</div>
+            </div>
+            <div class="input-group col-5">
+              <div class="input-group-addon">Length:</div>
+              <div class="input-group-addon">{{project.last_frame_index / fps | number:'1.0-2'}} sec</div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-9 form-group row">
+              <label for="title" class="col-2 col-form-label">Title</label>
+              <input type="text" class="form-control col-10" name="title" [(ngModel)]="title">
+            </div>           
+            <div class="col-3">
+              <button type="button" class="btn btn-primary">Publish</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

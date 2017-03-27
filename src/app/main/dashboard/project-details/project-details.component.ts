@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
 
 import { ProjectsService } from '../../../projects.service';
+import { GalleryService } from '../../../gallery.service';
 
 import { Project } from '../../../project';
+import { PublishingInstruction } from '../../../instruction';
 
 @Component({
   selector: 'app-project-details',
@@ -16,14 +18,20 @@ import { Project } from '../../../project';
 export class ProjectDetailsComponent implements OnInit {
   project: Project;
   selectedFrame: number;
+  fps: number;
+  title: string;
 
   constructor(
     private pS: ProjectsService,
+    private gS: GalleryService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location
   ) {
     this.project = new Project();
     this.selectedFrame = 0;
+    this.fps = 10;
+    this.title = '';
   }
 
   get frames(): number[] {
@@ -37,6 +45,15 @@ export class ProjectDetailsComponent implements OnInit {
 
   selectFrame(number) {
     this.selectedFrame = number
+  }
+
+  publish() {
+    const instruction: PublishingInstruction = {
+      url: this.project.hash_id,
+      delay: Math.round(100 / this.fps),
+      title: this.title
+    }
+    this.gS.publishToGallery(instruction).then(({url}) => this.router.navigate(['/gallery']))
   }
 
   stringify(obj: any): string {

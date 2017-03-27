@@ -9,7 +9,7 @@ import { SocketService } from '../../../socket.service';
 import { ProjectsService } from '../../../projects.service';
 
 import { Device } from '../../../device';
-import { Instruction } from '../../../instruction';
+import { CameraInstruction } from '../../../instruction';
 import { TimeUnit } from '../../../time-unit';
 
 @Component({
@@ -19,7 +19,7 @@ import { TimeUnit } from '../../../time-unit';
 })
 export class DeviceDetailsComponent implements OnInit {
   device: Device;
-  model: Instruction;
+  model: CameraInstruction;
   submitable: boolean;
 
   constructor(
@@ -30,7 +30,7 @@ export class DeviceDetailsComponent implements OnInit {
     private location: Location
   ) { 
     this.device = new Device()
-    this.model = new Instruction()
+    this.model = new CameraInstruction()
     this.submitable = true;
   }
 
