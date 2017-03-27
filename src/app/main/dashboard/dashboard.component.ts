@@ -15,11 +15,11 @@ class ProjectsList {
   }
 
   get recordingCompleted () {
-    return this.all.filter((project: Project) => project.recording_completed_at && !project.published_url)
+    return this.all.filter((project: Project) => project.recording_completed_at && !project.published_at)
   }
 
   get published() {
-    return this.all.filter((project: Project) => project.published_url !== null)
+    return this.all.filter((project: Project) => project.published_at !== null)
   }
 }
 
@@ -37,9 +37,4 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.pS.getAllProjects().then(arr => this.projects = new ProjectsList(arr));
   }
-
-  stringify(obj: Object): string {
-    return JSON.stringify(obj)
-  }
-
 }

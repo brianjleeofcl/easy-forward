@@ -21,7 +21,6 @@
                 <li>Interval: {{project.interval / 1000 | amDuration:'seconds'}}</li>
               </ul>
             </div>
-            {{stringify(project)}}
           </div>
         </div>
       </div>  
@@ -46,7 +45,6 @@
             <div class="card-footer">
               <a class="btn btn-primary" [routerLink]="['/projects', project.id]">Edit & publish</a>
             </div>
-            {{stringify(project)}}        
           </div>  
         </div>
       </div>
@@ -59,11 +57,16 @@
         </div>
         <div class="col-12 col-md-6">
           <div class="card" *ngFor="let project of projects.published">
-            <img class="card-img-top" src="https://s3.amazonaws.com/brianjleeofcl-capstone/{{project.hash_id}}-001.jpg">
+            <img class="card-img-top img-fluid" src="https://s3-us-west-2.amazonaws.com/brianjleeofcl-capstone-gif/{{project.hash_id}}.gif">
             <div class="card-block">
-              Duration: {{project.duration | amDuration:'miliseconds'}}, Interval: {{project.interval | amDuration:'miliseconds'}}
+              <ul>
+                <li>Recorded {{project.created_at | amCalendar}}</li>
+                <li>Published {{project.published_at | amCalendar}}</li>
+              </ul>
             </div>
-            {{stringify(project)}}
+            <div class="card-footer">
+              <a class="btn btn-primary" [routerLink]="['gallery', project.hash_id]">View</a>
+            </div>
           </div>
         </div>
       </div>  

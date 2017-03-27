@@ -6,5 +6,5 @@ export class Project {
   hash_id?: string;
   last_frame_index?: number;
   recording_completed_at?: null | string;
-  published_url?: string; 
+  published_at?: string; 
 }
