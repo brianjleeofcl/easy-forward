@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 class NewDevice {
   constructor(MAC_address: string, nickname: string) {}
@@ -11,9 +12,10 @@ class NewDevice {
 })
 export class NewDeviceComponent implements OnInit {
   model = new NewDevice('', '');
-  constructor() { }
+  constructor(private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Add new device')
   }
 
   handleSubmit() {

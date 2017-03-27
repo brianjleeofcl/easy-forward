@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { DevicesService } from '../../devices.service';
 
@@ -12,12 +13,13 @@ import { Device } from '../../device'
 export class DevicesComponent implements OnInit {
   devices: Device[];
 
-  constructor(private dS: DevicesService) {
+  constructor(private dS: DevicesService, private title: Title) {
     this.devices = []
   }
 
   ngOnInit() {
     this.getData()
+    this.title.setTitle('Devices summary')
   }
 
   getData(): void {

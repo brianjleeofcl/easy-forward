@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { LoginComponent } from './auth/login/login.component';
-import { LoginWrapperComponent } from './auth/login/login-wrapper.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { NavComponent } from './nav/nav.component';
 import { GalleryComponent } from './main/gallery/gallery.component';
@@ -32,7 +31,6 @@ import { GalleryService } from './gallery.service';
   declarations: [
     AppComponent,
     LoginComponent,
-    LoginWrapperComponent,
     SignUpComponent,
     NavComponent,
     GalleryComponent,

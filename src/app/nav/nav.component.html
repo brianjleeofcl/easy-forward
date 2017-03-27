@@ -30,7 +30,7 @@
         <button class="btn btn-secondary" (click)="logout()">Log Out</button>
       </li>
       <li class="nav-item" *ngIf="!logged">
-        <app-login-wrapper></app-login-wrapper>
+        <a class="btn btn-primary" routerLink="/login">Login</a>
       </li>
     </ul>
   </div>

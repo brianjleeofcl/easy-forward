@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+
 import { ProjectsService } from '../../projects.service';
 
 import { Project } from '../../project';
@@ -30,11 +32,12 @@ class ProjectsList {
 })
 export class DashboardComponent implements OnInit {
   projects: ProjectsList;
-  constructor(private pS: ProjectsService) {
+  constructor(private pS: ProjectsService, private title: Title) {
     this.projects = new ProjectsList([new Project()])
   }
 
   ngOnInit() {
     this.pS.getAllProjects().then(arr => this.projects = new ProjectsList(arr));
+    this.title.setTitle('My Dashboard')
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { UsersService } from '../../users.service'
 
@@ -19,9 +20,10 @@ class NewUserForm {
 export class SignUpComponent implements OnInit {
   model: NewUserForm = new NewUserForm(new NewUser(), '');
 
-  constructor(private uS: UsersService) { }
+  constructor(private uS: UsersService, private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Sign up')
   }
 
   handleSubmit() {

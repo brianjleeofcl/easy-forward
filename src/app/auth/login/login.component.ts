@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { UsersService } from '../../users.service';
 import { UserCredential } from '../../user-credential';
@@ -18,9 +19,10 @@ class Credentials {
 export class LoginComponent implements OnInit {
   model: UserCredential = new UserCredential()
 
-  constructor(private uS: UsersService) { }
+  constructor(private uS: UsersService, private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Log in')
   }
 
   handleSubmit() {
