@@ -8,17 +8,28 @@ exports.seed = function(knex) {
         {
           id: 1,
           user_id: 1,
-          url: 'k8mep2bMyJ',
+          url: 'VolejRejNm',
           title: 'Test shot, Thursday afternoon',
           created_at: '2017/03/26 22:34:00 UTC'
         },
         {
           id: 2,
           user_id: 1,
-          url: 'l4zbq2dprO',
+          url: 'wpmbk5ezJn',
           title: 'Test shot2, Monday afternoon',
           created_at: '2017/04/03 14:03:00 PDT'
+        },
+        {
+          id: 3,
+          user_id: 1,
+          url: 'Opnel5aKBz',
+          title: 'North-facing windows on Jackson',
+          created_at: '2017-04-03T23:25:42'
         }
       ]);
+    }).then(() => {
+      return knex.raw(
+        "SELECT setval('images_id_seq', (SELECT MAX(id) FROM images));"
+      )
     });
 };
