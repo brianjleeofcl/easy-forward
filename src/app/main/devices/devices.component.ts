@@ -19,7 +19,7 @@ export class DevicesComponent implements OnInit {
 
   ngOnInit() {
     this.getData()
-    this.title.setTitle('Devices summary')
+    this.title.setTitle('Devices summary — Easy Forward')
   }
 
   getData(): void {

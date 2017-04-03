@@ -40,7 +40,7 @@ export class DeviceDetailsComponent implements OnInit {
     this.route.params.switchMap((params: Params) => this.dS.getDevice(+params['id']))
       .subscribe(device => {
         this.device = device;
-        this.title.setTitle(`${device.nickname} — details`)
+        this.title.setTitle(`${device.nickname} — details — Easy Forward`)
       });
     this.model.duration_unit_val = TimeUnit.Minute;
     this.model.interval_unit_val = TimeUnit.Second;

@@ -15,7 +15,7 @@ export class NewDeviceComponent implements OnInit {
   constructor(private title: Title) { }
 
   ngOnInit() {
-    this.title.setTitle('Add new device')
+    this.title.setTitle('Add new device — Easy Forward')
   }
 
   handleSubmit() {

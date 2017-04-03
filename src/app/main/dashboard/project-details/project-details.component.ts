@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -26,7 +27,8 @@ export class ProjectDetailsComponent implements OnInit {
     private gS: GalleryService,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private pageTitle: Title
   ) {
     this.project = new Project();
     this.selectedFrame = 0;
@@ -40,7 +42,8 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.switchMap((params: Params) => this.pS.getProject(+params['id']))
-      .subscribe(project => this.project = project); 
+      .subscribe(project => this.project = project);
+    this.pageTitle.setTitle('Easy Forward')
   }
 
   selectFrame(number) {

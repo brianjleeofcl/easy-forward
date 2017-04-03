@@ -31,7 +31,7 @@ export class GalleryDetailsComponent implements OnInit {
     this.route.params.switchMap((params: Params) => this.gS.getImage(params['url']))
       .subscribe(image => {
         this.image = image
-        this.title.setTitle(`View ${image.title}`)
+        this.title.setTitle(`View ${image.title} — Easy Forward`)
       }); 
   }
 

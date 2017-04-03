@@ -38,6 +38,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.pS.getAllProjects().then(arr => this.projects = new ProjectsList(arr));
-    this.title.setTitle('My Dashboard')
+    this.title.setTitle('My Dashboard — Easy Forward')
   }
 }

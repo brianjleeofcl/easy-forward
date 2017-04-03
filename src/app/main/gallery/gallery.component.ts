@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser'
 
 import { GalleryService } from '../../gallery.service';
 
@@ -12,9 +13,10 @@ import { Image } from '../../image';
 export class GalleryComponent implements OnInit {
   images: Image[];
 
-  constructor(private gS: GalleryService) { }
+  constructor(private gS: GalleryService, private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Easy Forward')
     this.gS.getImages().then(images => this.images = images)
   }
 
