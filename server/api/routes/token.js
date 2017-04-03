@@ -75,14 +75,14 @@ router.post('/', (req, res, next) => {
       secure: router.get('env') === 'Production',
     });
 
-    res.send(user);
+    res.send({user, valid: true});
   })
   .catch(err => next(err));
 })
 
 router.delete('/', (req, res, next) => {
   res.clearCookie('token');
-  res.send(false);
+  res.send({valid: false});
 })
 
 module.exports = router

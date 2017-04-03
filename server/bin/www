@@ -125,11 +125,14 @@ io.on('connection', client => {
   })
 
   client.on('device-upload-complete', ([socket_id, hash]) => {
+    let device
     knex('projects').where('hash_id', hash).update('recording_completed_at', new Date(), '*').then(arr => {});
-    knex('devices').where('socket_id', socket_id).update('busy', false, '*').then(([device]) => {
+    knex('devices').where('socket_id', socket_id).update('busy', false, '*').then(([updatedDevice]) => {
+      device = updatedDevice
+
       return knex('users').where('id', device.user_id);
     }).then(([user]) => {
-      client.to(user.email).emit('device-update');
+      client.to(user.email).emit('device-update', device.id);
     });
   });
 
@@ -138,7 +141,7 @@ io.on('connection', client => {
       if (device) {
         knex('devices').where('id', device.id).update('socket_id', null, '*').then(([disconnectedDevice]) => {
           return knex('users').select('email').where('id', disconnectedDevice.user_id);
-        }).then(([{ email }]) => client.to(email).emit('device-update'));
+        }).then(([{ email }]) => client.to(email).emit('device-update', device.id));
       }
     });
   });

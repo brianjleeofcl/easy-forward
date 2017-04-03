@@ -24,20 +24,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getUser()
-    this.getDevices()
+    this.uS.authEmit.subscribe(logged => {
+      this.logged = logged;
+      if (logged) this.getDevices()
+    });
   }
 
   getUser(): void {
-    this.uS.getUser().then(userRes => {
-      this.user = userRes.user;
-      this.logged = userRes.valid;
-
-      if(this.logged) {
-        console.log(this.user.id);
-        
-        this.socket.onLoad(this.user.id)
-      }
-    });
+    this.uS.getUser()
   };
 
   getDevices(): void {

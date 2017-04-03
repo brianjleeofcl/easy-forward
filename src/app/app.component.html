@@ -1,4 +1,4 @@
-<app-nav [user]="user" [logged]="logged" [devices]="devices"></app-nav>
+<app-nav [user]="uS.userEmit | async" [logged]="logged" [devices]="devices"></app-nav>
 <main class="container">
   <router-outlet></router-outlet>
 </main>

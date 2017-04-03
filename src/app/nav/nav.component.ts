@@ -22,6 +22,6 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    this.uS.logout().then(() => window.location.href = '/')
+    this.uS.logout()
   }
 }
