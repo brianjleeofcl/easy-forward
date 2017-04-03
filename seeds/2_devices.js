@@ -9,7 +9,16 @@ exports.seed = function(knex, Promise) {
           id: 1,
           user_id: 1,
           nickname: 'First camera',
-          MAC_address: '02:a3:70:35:bc:a6',
+          device_class: 't2',
+          serial: '02:a3:70:35:bc:a6',
+          socket_id: null
+        },
+        {
+          id: 2,
+          user_id: 1,
+          nickname: 'pi',
+          device_class: 'pi',
+          serial: '00000000f83a5452',
           socket_id: null
         }
       ]);

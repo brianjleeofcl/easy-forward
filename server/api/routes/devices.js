@@ -19,7 +19,10 @@ function auth(req, res, next) {
 };
 
 router.get('/', auth, (req, res, next) => {
-  knex('devices').where('user_id', req.claim.id).then((devices) => res.send(devices))
+  knex('devices').where('user_id', req.claim.id).then((devices) => {
+    console.log(devices)
+    res.send(devices)
+  })
 });
 
 router.get('/:id', auth, (req, res, next) => {
@@ -36,15 +39,15 @@ router.get('/:id', auth, (req, res, next) => {
 })
 
 router.post('/new', auth, (req, res, next) => {
-  const { MAC_address, nickname, socket_id } = req.body
+  const { serial, device_class, nickname, socket_id } = req.body
   const user_id = req.claim.id
 
-  knex('devices').where('MAC_address', MAC_address).then(([existingDevice]) => {
+  knex('devices').where('serial', serial).where('device_class', device_class).then(([existingDevice]) => {
     if (existingDevice) {
       throw boom.badRequest('Device already registered')
     }
 
-    return knex('devices').insert({user_id, MAC_address, nickname, socket_id}, '*')
+    return knex('devices').insert({user_id, serial, device_class, nickname, socket_id}, '*')
   }).then(([newDevice]) => {
     res.send(newDevice)
   })

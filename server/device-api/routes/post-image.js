@@ -14,12 +14,9 @@ router.post('/:hash/:index', (req, res, next) => {
   const paddedIndex = leftPad(index, 3, '0');
   const reqBuffer = [];
 
-  console.log(`request received: ${index}`);
   req.on('data', chunk => {
-    console.log(`incoming data for ${index}`);
     reqBuffer.push(chunk);
   }).on('end', () => {
-    console.log('request body received');
     const reqBody = Buffer.concat(reqBuffer);
     s3.putObject({
       ACL: 'public-read',
@@ -27,7 +24,7 @@ router.post('/:hash/:index', (req, res, next) => {
       Key: `${hash}-${paddedIndex}.jpg`,
       Body: reqBody,
       ContentEncoding: 'base64',
-      ContentType: 'image/jpg',
+      ContentType: 'image/jpeg',
     }, (err, data) => {
       if (err) {
         console.error(err);
