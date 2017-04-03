@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
 
