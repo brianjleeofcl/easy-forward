@@ -13,7 +13,7 @@ exports.seed = function(knex) {
           hash_id:'k8mep2bMyJ', 
           last_frame_index: 53,
           recording_completed_at: new Date(),
-          published_at: null
+          published_at: new Date()
         }
       ]);
     }).then(() => {

@@ -64,7 +64,7 @@ const s3Url = function (hashUrl, num) {
 
 function generateRequests (lastFrame, url) {
 
-  return [1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19].map(num => new Promise(
+  return [...Array(lastFrame).keys()].map(num => new Promise(
     (resolve, reject) => request(s3Url(url, num))
       .pipe(fs.createWriteStream(path.join(temp, url, filename(url, num))))
       .on('finish', () => {

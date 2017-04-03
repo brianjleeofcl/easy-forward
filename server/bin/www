@@ -119,7 +119,12 @@ io.on('connection', client => {
     });
   });
 
-  client.on('device-record-complete', ([socket_id, hash]) => {
+  client.on('device-record-complete', ([hash, iteration]) => {
+    console.log(hash, iteration)
+    client.emit('device-upload', [hash, iteration])
+  })
+
+  client.on('device-upload-complete', ([socket_id, hash]) => {
     knex('projects').where('hash_id', hash).update('recording_completed_at', new Date(), '*').then(arr => {});
     knex('devices').where('socket_id', socket_id).update('busy', false, '*').then(([device]) => {
       return knex('users').where('id', device.user_id);

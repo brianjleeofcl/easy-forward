@@ -14,13 +14,13 @@ router.post('/:hash/:index', (req, res, next) => {
   const paddedIndex = leftPad(index, 3, '0');
   const reqBuffer = [];
 
-  console.log(`request received: ${index}`)
+  console.log(`request received: ${index}`);
   req.on('data', chunk => {
-    console.log(`incoming data for ${index}`)
-    reqBuffer.push(chunk)
+    console.log(`incoming data for ${index}`);
+    reqBuffer.push(chunk);
   }).on('end', () => {
-    console.log('request body received')
-    const reqBody = Buffer.concat(reqBuffer)
+    console.log('request body received');
+    const reqBody = Buffer.concat(reqBuffer);
     s3.putObject({
       ACL: 'public-read',
       Bucket: 'brianjleeofcl-capstone',
