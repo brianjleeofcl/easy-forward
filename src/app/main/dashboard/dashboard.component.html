@@ -13,7 +13,7 @@
         </div>
         <div class="col-12 col-md-6 mt-2" *ngFor="let project of projects.ongoing">
           <div class="card">
-            <img class="card-img-top img-fluid" src="https://s3.amazonaws.com/brianjleeofcl-capstone/{{project.hash_id}}-{{project.last_frame_index | number:'3.0-0'}}.jpg">
+            <img class="card-img-top img-fluid" *ngIf="project.last_frame_index >= 0" src="https://s3.amazonaws.com/brianjleeofcl-capstone/{{project.hash_id}}-{{project.last_frame_index | number:'3.0-0'}}.jpg">
             <div class="card-block">
               <h5 class="card-title">{{project.created_at | amDateFormat:'LLLL'}}</h5>
               <ul>
@@ -33,7 +33,7 @@
         </div>
         <div class="col-12 col-md-6" *ngFor="let project of projects.recordingCompleted">
           <div class="card">
-            <img class="card-img-top img-fluid" src="https://s3.amazonaws.com/brianjleeofcl-capstone/{{project.hash_id}}-001.jpg">
+            <img class="card-img-top img-fluid" src="https://s3.amazonaws.com/brianjleeofcl-capstone/{{project.hash_id}}-000.jpg">
             <div class="card-block">
               <h5 class="card-title">{{project.created_at | amDateFormat:'LLLL'}}</h5>
               <ul>

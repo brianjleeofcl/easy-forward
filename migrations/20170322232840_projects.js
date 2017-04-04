@@ -6,7 +6,7 @@ exports.up = function(knex) {
     table.integer('duration').notNullable();
     table.integer('interval').notNullable();
     table.string('hash_id');
-    table.integer('last_frame_index').defaultTo(0);
+    table.integer('last_frame_index').defaultTo(-1);
     table.timestamp('recording_completed_at').defaultTo(null);
     table.timestamp('published_at').defaultTo(null);
     table.timestamps(true, true);

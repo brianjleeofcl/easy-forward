@@ -4,7 +4,12 @@
       <div class="card-header">
         <h4>{{image.title}}</h4>
       </div>
-      <img class="card-block img-fluid" src="https://s3-us-west-2.amazonaws.com/brianjleeofcl-capstone-gif/{{image.url}}.gif" alt="{{image.title}}">
+      <div class="card-block">
+        <img class="img-fluid" src="https://s3-us-west-2.amazonaws.com/brianjleeofcl-capstone-gif/{{image.url || 'loading'}}.gif" alt="{{image.title}}">
+      </div>
+      <div class="card-block">
+        <small>by {{image.name}} — {{image.created_at | amDateFormat:'LLLL'}}</small>
+      </div>
       <div class="card-footer">
         <a routerLink="/">Back to gallery</a>
         <a href="https://s3-us-west-2.amazonaws.com/brianjleeofcl-capstone-gif/{{image.url}}.gif" class="btn btn-secondary" download>download</a>
