@@ -1,10 +1,11 @@
-# CapstoneProject
+# Easy Forward
 
+##### Capstone Project!
 Brian J Lee, created March 2017.
 
 ## Description
 
-Time lapse camera, built using Tessel 2 development board, incorporating Socket.io, ImageMagic and Express.js; frontend built using Angular 2.4
+Time lapse camera, built using ~~Tessel 2 development board~~ Raspberry Pi, incorporating Socket.io, ImageMagic and Express.js; frontend built using Angular 2.4
 
 ## Installation
 
