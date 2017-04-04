@@ -12,10 +12,16 @@
           <li>Recording finished {{project.recording_completed_at | amCalendar}}</li>
         </ul>        
       </div>
-      <div class="card-block">
+      <div class="card-block" *ngIf="clicked">
+        <div class="d-flex justify-content-center">
+          <h5>Working on it!</h5>
+          <img src="/assets/loading.gif" alt="loading...">
+        </div>
+      </div>
+      <div class="card-block" *ngIf="!clicked">
         <img src="https://s3.amazonaws.com/brianjleeofcl-capstone/{{project.hash_id}}-{{selectedFrame | number:'3.0-0'}}.jpg" alt="Frame for preview" class="img-fluid">
       </div>
-      <div class="card-block row no-gutters">
+      <div class="card-block row no-gutters" *ngIf="!clicked">
         <div class="col-6 col-md-2" *ngFor="let frame of frames" (click)="selectFrame(frame)">
           <img class="img-fluid img-thumbnail" src="https://s3.amazonaws.com/brianjleeofcl-capstone/{{project.hash_id}}-{{frame | number:'3.0-0'}}.jpg" alt="Frame no.{{frame}}">
         </div>
@@ -26,7 +32,7 @@
             <div class="input-group col-7">
               <div class="input-group-addon">{{project.last_frame_index}} frames</div>
               <div class="input-group-addon">÷</div>
-              <input type="number" class="form-control" [(ngModel)]="fps" name="fps">
+              <input type="number" class="form-control" [disabled]="clicked" [(ngModel)]="fps" name="fps">
               <div class="input-group-addon">frames/sec</div>
             </div>
             <div class="input-group col-5">
@@ -37,10 +43,10 @@
           <div class="row mt-2">
             <div class="col-9 form-group row">
               <label for="title" class="col-2 col-form-label">Title</label>
-              <input type="text" class="form-control col-10" name="title" [(ngModel)]="title">
+              <input type="text" class="form-control col-10" name="title" [disabled]="clicked" [(ngModel)]="title">
             </div>           
             <div class="col-3">
-              <button type="submit" class="btn btn-primary">Publish</button>
+              <button type="submit" [disabled]="clicked" class="btn btn-primary">Publish</button>
             </div>
           </div>
         </form>

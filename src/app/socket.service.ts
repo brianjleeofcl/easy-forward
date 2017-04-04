@@ -15,7 +15,7 @@ export class SocketService {
     })
 
     this.uS.userEmit.subscribe(user => {
-      if (user !== undefined) this.onLoad(user.id)
+      if (user.id) this.onLoad(user.id)
     })
   }
 

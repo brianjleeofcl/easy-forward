@@ -116,8 +116,9 @@ io.on('connection', client => {
   });
 
   client.on('instruction-record', ([socket_id, interval, iteration, hash]) => {
-    knex('devices').where('socket_id', socket_id).update('busy', true, '*').then(() => {
+    knex('devices').where('socket_id', socket_id).update('busy', true, '*').then(device => {
       client.to(socket_id).emit('device-record', [interval, iteration, hash]);
+      client.emit('device-update', device.id)
     });
   });
 

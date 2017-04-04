@@ -21,6 +21,7 @@ export class ProjectDetailsComponent implements OnInit {
   selectedFrame: number;
   fps: number;
   title: string;
+  clicked: boolean = false;
 
   constructor(
     private pS: ProjectsService,
@@ -51,6 +52,7 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   publish() {
+    this.clicked = true
     const instruction: PublishingInstruction = {
       url: this.project.hash_id,
       delay: Math.round(100 / this.fps),
@@ -58,9 +60,7 @@ export class ProjectDetailsComponent implements OnInit {
       last_frame_index: this.project.last_frame_index
     }
     this.gS.publishToGallery(instruction).then(({url}) => {
-      console.log(url);
-      
-      // this.router.navigate(['/gallery', url])
+      this.router.navigate(['/details', url])
     })
   }
 

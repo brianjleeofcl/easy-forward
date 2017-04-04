@@ -72,10 +72,6 @@ export class UsersService {
     })
   }
 
-  private handleResponse(res): void {
-
-  }
-
   private handleError(error: any): void {
     console.error(error)
   }
