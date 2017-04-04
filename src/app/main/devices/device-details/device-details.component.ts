@@ -37,8 +37,8 @@ export class DeviceDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.map((params: Params) => this.dS.getDevice(+params['id']))
-    this.dS.deviceEmitter.subscribe(device => {
+    this.route.params.switchMap((params: Params) => this.dS.getDevice(+params['id']))
+    .subscribe(device => {
       this.device = device;
       this.title.setTitle(`${device.nickname} — details — Easy Forward`)
     });
