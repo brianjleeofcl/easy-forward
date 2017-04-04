@@ -108,7 +108,7 @@ io.on('connection', client => {
       if (device) {
         knex('devices').where('id', device.id).update({socket_id: client.id, url, busy: false, updated_at: new Date()}, '*').then(([updatedDevice]) => {
           return knex('users').where('id', device.user_id);
-        }).then(([user]) => client.to(user.email).emit('device-ready', device.id));
+        }).then(([user]) => client.to(user.email).emit('device-update', device.id));
       } else {
         client.join(serial);
       }
@@ -120,11 +120,6 @@ io.on('connection', client => {
       client.to(socket_id).emit('device-record', [interval, iteration, hash]);
     });
   });
-
-  client.on('device-record-complete', ([hash, iteration]) => {
-    console.log(hash, iteration)
-    client.emit('device-upload', [hash, iteration])
-  })
 
   client.on('device-upload-complete', ([socket_id, hash]) => {
     let device

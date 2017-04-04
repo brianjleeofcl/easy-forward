@@ -35,6 +35,6 @@ export class AppComponent implements OnInit {
   };
 
   getDevices(): void {
-    this.dS.getDevices().then(data => this.devices = data)
+    this.dS.getDevices()
   }
 }

@@ -9,6 +9,7 @@
           <table class="table">
             <thead class="thead-default">
               <tr>
+                <th></th>
                 <th>Nickname</th>
                 <th>Status</th>
                 <th>Last connected</th>
@@ -17,13 +18,14 @@
             </thead>
             <tbody>
               <tr *ngFor="let device of devices">
+                <td><img src="/assets/{{device.device_class}}-small.jpg" class="img-thumbnail"/></td>
                 <td>{{device.nickname}}</td>
                 <td>
                   <span *ngIf="!device.socket_id" class="text-danger">disconnected</span>
                   <span *ngIf="device.socket_id && !device.busy" class="text-success">ready</span>
                   <span *ngIf="device.socket_id && device.busy" class="text-info">recording</span>
                 </td>
-                <td>{{device.updated_at | date:'medium'}}</td>
+                <td>{{device.updated_at | amCalendar}}</td>
                 <td>
                   <a class="btn btn-info" [routerLink]="['/device', device.id]">Details</a>
                 </td>

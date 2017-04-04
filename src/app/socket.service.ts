@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 
 import { UsersService } from './users.service';
+import { DevicesService } from './devices.service';
 
 @Injectable()
 export class SocketService {
   public socket: any
 
-  constructor(private uS: UsersService) {
-    this.socket = io.connect('/').on('device-ready', (socket_id, MAC_address) => {
-      
-    }).on('device-update', () => console.log('device updated'))
+  constructor(private uS: UsersService, private dS: DevicesService) {
+    this.socket = io.connect('/').on('device-update', id => {
+      this.dS.getDevices()
+      this.dS.getDevice(id)
+    })
 
     this.uS.userEmit.subscribe(user => {
       if (user !== undefined) this.onLoad(user.id)

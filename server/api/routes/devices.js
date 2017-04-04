@@ -19,10 +19,7 @@ function auth(req, res, next) {
 };
 
 router.get('/', auth, (req, res, next) => {
-  knex('devices').where('user_id', req.claim.id).then((devices) => {
-    console.log(devices)
-    res.send(devices)
-  })
+  knex('devices').where('user_id', req.claim.id).then((devices) => res.send(devices))
 });
 
 router.get('/:id', auth, (req, res, next) => {

@@ -11,7 +11,8 @@
             <span *ngIf="device.socket_id && !device.busy" class="text-success">ready</span>
             <span *ngIf="device.socket_id && device.busy" class="text-info">recording</span>
           </li>
-          <li>MAC Address: {{device.MAC_address | uppercase}}</li>
+          <li>Device: {{device.device_class}}</li>
+          <li>Serial: {{device.serial | uppercase}}</li>
           <li>Registed date: {{device.created_at | date:'medium'}}</li>
         </ul>
       </div>

@@ -14,7 +14,7 @@ export class DevicesComponent implements OnInit {
   devices: Device[];
 
   constructor(private dS: DevicesService, private title: Title) {
-    this.devices = []
+    this.dS.devicesEmitter.subscribe(array => this.devices = array)
   }
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class DevicesComponent implements OnInit {
   }
 
   getData(): void {
-    this.dS.getDevices().then(data => this.devices = data)
+    this.dS.getDevices()
   }
 
 }

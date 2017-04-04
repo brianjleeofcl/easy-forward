@@ -40,12 +40,14 @@ router.get('/:id', auth, (req, res, next) => {
 router.post('/new', auth, (req, res, next) => {
   const user_id = req.claim.id
   const { duration, interval } = req.body
+  const created_at = new Date()
+  const updated_at = new Date()
 
   if (!user_id || !duration || !interval) {
     next(boom.badRequest('Missing input'))
   }
 
-  knex('projects').insert({user_id, duration, interval}, '*').then(([project]) => {
+  knex('projects').insert({user_id, duration, interval, created_at, updated_at}, '*').then(([project]) => {
     const hash_id = hash.encode(project.id)
 
     return knex('projects').where('id', project.id).update({hash_id}, '*')
