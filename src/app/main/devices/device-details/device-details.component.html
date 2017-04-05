@@ -17,7 +17,7 @@
         </ul>
       </div>
       <div class="card-block" *ngIf="device.socket_id && !device.busy">
-        <!--<img src="{{'/device-api/streams/' + device.id}}" />-->
+        <img src="data:image/jpeg;base64,{{previewData}}" />
       </div>
       <div class="card-block" *ngIf="device.socket_id && !device.busy">
         <h5>Record:</h5>

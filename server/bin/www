@@ -115,6 +115,14 @@ io.on('connection', client => {
     });
   });
 
+  client.on('device-preview-image', ([socket_id, base64data]) => {
+    knex('devices').where('socket_id', socket_id).then(([{user_id}]) => {
+      return knex('users').where('id', user_id)
+    }).then(([{email}]) => {
+      client.to(email).emit('preview-image', base64data)
+    })
+  })
+
   client.on('instruction-record', ([socket_id, interval, iteration, hash]) => {
     knex('devices').where('socket_id', socket_id).update('busy', true, '*').then(device => {
       client.to(socket_id).emit('device-record', [interval, iteration, hash]);

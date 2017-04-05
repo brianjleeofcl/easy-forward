@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Title } from '@angular/platform-browser'
 
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
 import { DevicesService } from '../../../devices.service';
@@ -22,6 +23,7 @@ export class DeviceDetailsComponent implements OnInit {
   device: Device;
   model: CameraInstruction;
   submitable: boolean;
+  previewData: string
 
   constructor(
     private socket: SocketService,
@@ -42,6 +44,11 @@ export class DeviceDetailsComponent implements OnInit {
       this.device = device;
       this.title.setTitle(`${device.nickname} — details — Easy Forward`)
     });
+    this.socket.previewEmitter.subscribe(data => {
+      console.log(data);
+      
+      this.previewData = data
+    })
     this.model.duration_unit_val = TimeUnit.Minute;
     this.model.interval_unit_val = TimeUnit.Second;
   }
