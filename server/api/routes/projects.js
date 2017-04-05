@@ -47,7 +47,14 @@ router.post('/new', auth, (req, res, next) => {
     next(boom.badRequest('Missing input'))
   }
 
-  knex('projects').insert({user_id, duration, interval, created_at, updated_at}, '*').then(([project]) => {
+  knex('projects').insert({
+    user_id, 
+    duration, 
+    interval, 
+    last_frame_index: -1, 
+    created_at, 
+    updated_at
+  }, '*').then(([project]) => {
     const hash_id = hash.encode(project.id)
 
     return knex('projects').where('id', project.id).update({hash_id}, '*')
