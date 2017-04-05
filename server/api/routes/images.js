@@ -109,10 +109,11 @@ router.post('/new', auth, (req, res, next) => {
           } else {
             const created_at = new Date()
             const updated_at = new Date()
+            const published_at = created_at
 
             knex('images').insert({user_id, url, title, created_at, updated_at}, '*')
               .then(([image]) => {
-                knex('projects').where('hash_id', url).update('published_at', image.created_at, '*')
+                knex('projects').where('hash_id', image.url).update({published_at}, '*')
                   .then(() => res.send(image))
               }).catch(err => next(boom.create(500, 'Database error',err)))
           }
