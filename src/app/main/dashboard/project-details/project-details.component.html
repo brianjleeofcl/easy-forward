@@ -23,7 +23,7 @@
       </div>
       <div class="card-block row no-gutters" *ngIf="!clicked">
         <div class="col-6 col-md-2" *ngFor="let frame of frames" (click)="selectFrame(frame)">
-          <img class="img-fluid img-thumbnail" src="https://s3.amazonaws.com/brianjleeofcl-capstone/{{project.hash_id}}-{{frame | number:'3.0-0'}}.jpg" alt="Frame no.{{frame}}">
+          <img class="img-fluid img-thumbnail" src="https://s3.amazonaws.com/brianjleeofcl-capstone/{{project.hash_id || 'loading'}}-{{frame | number:'3.0-0'}}.jpg" alt="Frame no.{{frame}}">
         </div>
       </div>
       <div class="card-footer">
