@@ -107,10 +107,14 @@ router.post('/new', auth, (req, res, next) => {
             console.error(err);
             return next(boom.create(500, 'S3 Error', err))
           } else {
-            knex('images').insert({user_id, url, title}, '*').then(([image]) => {
-              knex('projects').where('hash_id', url).update('published_at', image.created_at, '*')
-                .then(() => res.send(image))
-            }).catch(err => next(boom.create(500, 'Database error',err)))
+            const created_at = new Date()
+            const updated_at = new Date()
+
+            knex('images').insert({user_id, url, title, created_at, updated_at}, '*')
+              .then(([image]) => {
+                knex('projects').where('hash_id', url).update('published_at', image.created_at, '*')
+                  .then(() => res.send(image))
+              }).catch(err => next(boom.create(500, 'Database error',err)))
           }
         })
       })
