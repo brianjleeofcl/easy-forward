@@ -32,8 +32,6 @@ export class SocketService {
   }
 
   updatePreview() {
-    console.log(this.imgdata);
-    
     this.preview.next(this.imgdata)
   }
 

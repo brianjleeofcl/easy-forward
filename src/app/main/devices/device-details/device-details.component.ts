@@ -45,8 +45,6 @@ export class DeviceDetailsComponent implements OnInit {
       this.title.setTitle(`${device.nickname} — details — Easy Forward`)
     });
     this.socket.previewEmitter.subscribe(data => {
-      console.log(data);
-      
       this.previewData = data
     })
     this.model.duration_unit_val = TimeUnit.Minute;
