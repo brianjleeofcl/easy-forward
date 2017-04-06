@@ -98,12 +98,10 @@ const io = require('socket.io')(server)
 
 io.on('connection', client => {
   client.on('initialize-browser-user', id => {
-    console.log('browser connected')
     knex('users').where('id', id).then(([user]) => client.join(user.email))
   })
 
   client.on('initialize-device-user', ([devClass, serial, url]) => {
-    console.log('device connected')
     knex('devices').where('device_class', devClass).where('serial', serial.toLowerCase()).then(([device]) => {
       if (device) {
         knex('devices').where('id', device.id).update({socket_id: client.id, url, busy: false, updated_at: new Date()}, '*').then(([updatedDevice]) => {

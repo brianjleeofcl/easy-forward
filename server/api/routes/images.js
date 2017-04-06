@@ -68,7 +68,6 @@ function generateRequests (lastFrame, url) {
     (resolve, reject) => request(s3Url(url, num))
       .pipe(fs.createWriteStream(path.join(temp, url, filename(url, num))))
       .on('finish', () => {
-        console.log(`${num} finished writing`);
         resolve();
       })
       .on('error', error => {

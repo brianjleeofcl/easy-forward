@@ -30,7 +30,6 @@ router.post('/:hash/:index', (req, res, next) => {
         console.error(err);
         next(boom.notImplemented('S3 Error', err))
       } else {
-        console.log(`${index}: posted to s3 successfully`)
         knex('projects').where('hash_id', hash).then(([project]) => {
           const last_frame_index = project.last_frame_index < index 
             ? index 
@@ -38,7 +37,6 @@ router.post('/:hash/:index', (req, res, next) => {
           
           return knex('projects').where('hash_id', hash).update({last_frame_index}, '*')
         }).then(([project]) => {
-          console.log(project.last_frame_index)
           res.send(project)
         }).catch(err => next(boom.create(err)))
       }
