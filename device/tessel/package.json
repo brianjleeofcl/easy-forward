@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "axios": "^0.15.3",
+    "johnny-five": "^0.10.6",
+    "socket.io-client": "^1.7.3",
+    "tessel-av": "^0.15.1",
+    "tessel-io": "^0.10.1"
+  }
+}

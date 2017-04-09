@@ -1,0 +1,24 @@
+{
+  "name": "rasp-files",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianjleeofcl/rasp-file.git"
+  },
+  "keywords": [],
+  "author": "Brian Lee <brianjleeofcl@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brianjleeofcl/rasp-file/issues"
+  },
+  "homepage": "https://github.com/brianjleeofcl/rasp-file#readme",
+  "dependencies": {
+    "axios": "^0.16.0",
+    "socket.io-client": "^1.7.3"
+  }
+}

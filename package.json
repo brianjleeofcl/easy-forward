@@ -57,7 +57,6 @@
     "foreman": "^2.0.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
-    "johnny-five": "^0.10.6",
     "karma": "~1.4.1",
     "karma-chrome-launcher": "~2.0.0",
     "karma-cli": "~1.0.1",
@@ -66,8 +65,6 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "nodemon": "^1.11.0",
     "protractor": "~5.1.0",
-    "tessel-av": "^0.15.1",
-    "tessel-io": "^0.10.1",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "~2.0.0"
