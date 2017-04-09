@@ -5,15 +5,13 @@ const path = require('path');
 
 const boom = require('boom');
 
-router.get('/install/pi', (req, res, next) => {
-  fs.readFile(path.join(__dirname, 'install', 'pi', 'install.sh'), 'utf-8', (err, data) => {
-    if (err) return next(boom.create(500, 'file read error', err));
-    res.set('Content-Type', 'application/sh').send(data);
-  });
-});
+router.get('/install?', (req, res, next) => {
+  const boards = { t2: 't2', pi: 'pi' }
+  const { board } = req.query
 
-router.get('/install/t2', (req, res, next) => {
-  fs.readFile(path.join(__dirname, 'install', 't2', 'install.sh'), 'utf-8', (err, data) => {
+  if (!boards[board]) return next(boom.badRequest('Board format unrecognized'))
+
+  fs.readFile(path.join(__dirname, 'install', board, 'install.sh'), 'utf-8', (err, data) => {
     if (err) return next(boom.create(500, 'file read error', err));
     res.set('Content-Type', 'application/sh').send(data);
   });
