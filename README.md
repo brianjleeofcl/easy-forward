@@ -50,14 +50,34 @@ Follow instructions for deploying code to your device. The code from T2 can be r
 
 ## Features
 
+### Device
+Initialize devices using installation instructions above. The devices require a USB flashdrive for local storage, a camera component (e.g. UVC enabled webcam) and connection to power supply such as an external battery pack or AC adapter.
+
+### Gallery
+![screenshot, gallery](./readme/sc3.png)
+Main page, regardless of authentication status, is the gallery with card display preview images of the published works.
+
+### User authentication
+To register and connect with the device, user registration and authentication is required. 
+
+### Device registration
+Users can add new devices using a unique identifier for the boards. For Raspberry Pi, this is the serial number that gets logged in the console during each initialization. For Tessel 2, this is the MAC address used by the onboard WiFi adapter.
+
+It is also recommended that users give human-friendly nicknames to refer to the devices.
 
 ### Project lifecycle
 #### Initiate Recording
-Select the device to record in the device overview page. 
+Select the device to record in the device overview page. Using the preview image, calibrate the camera orientation.
+
+![screenshot, recording](./readme/sc1.gif)
+
+Once ready, fill in the time settings and submit. Page will be redirected to the device overview where the device status has now been updated.
 
 #### Ongoing Recording
-![screenshot, ongoing](./readme/sc1.png) 
+![screenshot, ongoing](./readme/sc2.png) 
 Ongoing projects is displayed in the project dashboard with the last uploaded image.
+
+#### Publish image
 
 ## Technology
 
