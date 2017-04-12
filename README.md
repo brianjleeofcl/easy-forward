@@ -51,10 +51,13 @@ Follow instructions for deploying code to your device. The code from T2 can be r
 ## Features
 
 ### Device
+![device, components](./readme/device2.jpg)
+
 Initialize devices using installation instructions above. The devices require a USB flashdrive for local storage, a camera component (e.g. UVC enabled webcam) and connection to power supply such as an external battery pack or AC adapter.
 
 ### Gallery
 ![screenshot, gallery](./readme/sc3.png)
+
 Main page, regardless of authentication status, is the gallery with card display preview images of the published works.
 
 ### User authentication
@@ -75,9 +78,15 @@ Once ready, fill in the time settings and submit. Page will be redirected to the
 
 #### Ongoing Recording
 ![screenshot, ongoing](./readme/sc2.png) 
+
 Ongoing projects is displayed in the project dashboard with the last uploaded image.
 
 #### Publish image
+![screenshot, completed](./readme/sc4.png)
+
+Completed recordings are listed in the dashboard. Clicking on the 'Edit & Publish' button will redirect to project details page.
+
+
 
 ## Technology
 
