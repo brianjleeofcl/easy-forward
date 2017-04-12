@@ -86,7 +86,8 @@ Ongoing projects is displayed in the project dashboard with the last uploaded im
 
 Completed recordings are listed in the dashboard. Clicking on the 'Edit & Publish' button will redirect to project details page.
 
-
+#### Output image
+![result](https://s3-us-west-2.amazonaws.com/brianjleeofcl-capstone-gif/JAPdRqbGyO.gif)
 
 ## Technology
 
