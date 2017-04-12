@@ -55,6 +55,8 @@ Follow instructions for deploying code to your device. The code from T2 can be r
 
 Initialize devices using installation instructions above. The devices require a USB flashdrive for local storage, a camera component (e.g. UVC enabled webcam) and connection to power supply such as an external battery pack or AC adapter.
 
+While not strictly necessary, a tripod to stabilize the camera module/webcam is strongly recommended.
+
 ### Gallery
 ![screenshot, gallery](./readme/sc3.png)
 
@@ -85,6 +87,14 @@ Ongoing projects is displayed in the project dashboard with the last uploaded im
 ![screenshot, completed](./readme/sc4.png)
 
 Completed recordings are listed in the dashboard. Clicking on the 'Edit & Publish' button will redirect to project details page.
+
+![screenshot, details](./readme/sc5.gif)
+
+Users may view individual frames recorded during the process.
+
+![screenshot, publish](./readme/sc6.gif)
+
+After selecting the framerate of the gif and the title, click publish. Once ready, the page will redirect to image.
 
 #### Output image
 ![result](https://s3-us-west-2.amazonaws.com/brianjleeofcl-capstone-gif/JAPdRqbGyO.gif)
